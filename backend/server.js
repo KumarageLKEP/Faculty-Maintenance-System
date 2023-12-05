@@ -1,13 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
+const bodyParser = require('body-parser');
+const cors = require('cors');
+
+//import routes
+const userRoute = require('./routes/user');
+
+//app midlware
+app.use(bodyParser.json());
+app.use(cors());
+
+app.use(userRoute);
 
 const PORT = 8000;
-const DB_URL = 'mongodb+srv://kavinda:kavinda899@facultymaintenanceapp.enli1ql.mongodb.net/?retryWrites=true&w=majority';
+const DB_URL = 'mongodb+srv://facultymaintenance:fmms123@fmms.zwouah7.mongodb.net/?retryWrites=true&w=majority';
 
 mongoose.connect(DB_URL, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
 })
     .then(() => {
         console.log('DB connected');
