@@ -12,8 +12,6 @@
 .auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
-  width: 500px;
-  height: 400px;
 }
 
 @media screen and (min-width: 600px) {
