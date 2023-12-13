@@ -3,7 +3,7 @@ const router = express.Router();
 const User = require('../models/user'); // Assuming your user model is named "User"
 
 // Create a new user
-router.post('/user', async (req, res) => {
+router.post('/register/user', async (req, res) => {
   try {
     const newUser = new User(req.body);
     await newUser.save();

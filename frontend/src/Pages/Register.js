@@ -1,63 +1,79 @@
 import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
-export const Register = (props) => {
-  const [email, setEmail] = useState('');
-  const [register, setRegister] = useState('');
-  const [contact, setContact] = useState('');
-  const [pass, setPass] = useState('');
-  const [confirmPass, setConfirmPass] = useState('');
-  const [name, setName] = useState('');
-  const [role, setRole] = useState('');
-  const [department, setDepartment] = useState('');
+function Register() {
+  const [formData, setFormData] = useState({
+    fullName: '',
+    email: '',
+    regNo: '',
+    role: '',
+    department: '',
+    contactNumber: '',
+    password: '',
+    confirmPassword:'',
 
-  const handleSubmit = async (e) => {
+  });
+
+  const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const {name, value} = e.target;
+    setFormData({ ...formData, [name]: value});
+  };
+
+  const onSubmit = (e) => {
     e.preventDefault();
 
-    if (pass !== confirmPass) {
-      alert('Passwords do not match');
-      return;
-    }
+    const { fullName, email, regNo, role, department, contactNumber,password,confirmPassword } = formData;
 
-    try {
-      const response = await axios.post('/user', {
-        email,
-        register,
-        contact,
-        pass,
-        name,
-        role,
-        department,
-      });
+    const data = {
+      fullName,
+      email,
+      regNo,
+      role,
+      department,
+      contactNumber,
+      password,
+      confirmPassword,
+    };
 
-      if (response.data.success) {
-        toast.success('Registration Successful');
-        props.onFormSwitch('login');
-      } else {
-        toast.error('Registration Failed. Please check your information.');
+
+    axios.post('http://localhost:8000/register/user', data).then((res) => {
+      if (res.data.success) {
+        alert('User Created Successfully');
+        setFormData({
+          fullName: '',
+          email: '',
+          regNo: '',
+          role: '',
+          department: '',
+          contactNumber: '',
+          password: '',
+          confirmPassword: '',
+        });
+
+        navigate('/');
       }
-    } catch (error) {
-      console.error('Error during registration:', error);
-      toast.error('Registration Failed. Please try again.');
-    }
+    });
   };
 
   return (
     <div className="auth-form-container">
       <h2>Register</h2>
-      <form className="register-form" onSubmit={handleSubmit}>
-      <label htmlFor="name">Full name</label>
-        <input value={name} name="name" onChange={(e) => setName(e.target.value)} id="name" placeholder="Full Name" />
-        
+      <form className="register-form">
+        <label htmlFor="name">Full name</label>
+        <input value={formData.fullName} name="fullName" onChange={handleInputChange} placeholder="Full Name" type="text"/>
+
         <label htmlFor="email">Email</label>
-        <input value={email} onChange={(e) => setEmail(e.target.value)} type="email" id="email" name="email" />
-        
-        <label htmlFor="register">Register No.</label>
-        <input value={register} onChange={(e) => setRegister(e.target.value)} type="text" placeholder="EG/____/____" id="register" name="register" />
-        
+        <input value={formData.email} onChange={handleInputChange} type="text"  name="email" />
+
+        <label htmlFor="regNo">Register No.</label>
+        <input value={formData.regNo} onChange={handleInputChange} type="text" placeholder="EG/____/____" name="regNo" />
+
         <label htmlFor="role">Role</label>
-        <select value={role} onChange={(e) => setRole(e.target.value)} id="role" name="role">
+        <select value={formData.role} onChange={handleInputChange}  name="role">
           <option value="">Select Role</option>
           <option value="academicStaff">Academic Staff</option>
           <option value="student">Student</option>
@@ -65,7 +81,7 @@ export const Register = (props) => {
         </select>
 
         <label htmlFor="department">Department</label>
-        <select value={department} onChange={(e) => setDepartment(e.target.value)} id="department" name="department">
+        <select value={formData.department} onChange={handleInputChange}  name="department">
           <option value="">Select Department</option>
           <option value="Electrical and Information Department">Electrical and Information Department</option>
           <option value="Civil and Environmental Department">Civil and Environmental Department</option>
@@ -74,19 +90,28 @@ export const Register = (props) => {
           <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
         </select>
 
-        <label htmlFor="contact">Contact No.</label>
-        <input value={contact} onChange={(e) => setContact(e.target.value)} type="text" placeholder="07********" id="contact" name="contact" />
-        
+        <label htmlFor="contactNumber">Contact No.</label>
+        <input value={formData.contactNumber} onChange={handleInputChange} type="text" placeholder="07********" name="contactNumber" />
+
         <label htmlFor="password">Password</label>
-        <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-        
+        <input value={formData.password} onChange={handleInputChange} type="text" placeholder="********"  name="password" />
+
         <label htmlFor="confirmPassword">Confirm Password</label>
-        <input value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} type="password" placeholder="********" id="confirmPassword" name="confirmPassword" />
-        <button type="submit"><a href="/">Register</a></button>
+        <input value={formData.confirmPassword} onChange={handleInputChange} type="text" placeholder="********"  name="confirmPassword" />
+
+        <button
+            className="btn btn-success"
+            type="submit"
+        
+            onClick={onSubmit}
+          >
+            <i className="far fa-check-square"></i>&nbsp; Register
+          </button>
       </form>
-      <button className="link-btn" onClick={() => props.onFormSwitch('login')}>
-        Already have an account? Login here.
-      </button>
+
+
     </div>
   );
-};
+}
+
+export default Register;
