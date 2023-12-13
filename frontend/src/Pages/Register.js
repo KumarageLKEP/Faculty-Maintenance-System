@@ -1,34 +1,45 @@
 import React, { useState } from "react";
 import { toast } from 'react-toastify';
+import axios from 'axios';
 
 export const Register = (props) => {
   const [email, setEmail] = useState('');
   const [register, setRegister] = useState('');
+  const [contact, setContact] = useState('');
   const [pass, setPass] = useState('');
   const [confirmPass, setConfirmPass] = useState('');
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [department, setDepartment] = useState('');
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (pass !== confirmPass) {
-      alert("Passwords do not match");
+      alert('Passwords do not match');
       return;
     }
 
+    try {
+      const response = await axios.post('/user', {
+        email,
+        register,
+        contact,
+        pass,
+        name,
+        role,
+        department,
+      });
 
-
-    // Assuming you have a success response from your registration logic
-    const res = { data: { success: true } };
-
-    if (res.data.success) {
-      toast.success('Registration Successful');
-      // Redirect to login page after successful registration
-      props.onFormSwitch('login');
-    } else {
-      toast.error('Registration Failed. Please check your information.');
+      if (response.data.success) {
+        toast.success('Registration Successful');
+        props.onFormSwitch('login');
+      } else {
+        toast.error('Registration Failed. Please check your information.');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+      toast.error('Registration Failed. Please try again.');
     }
   };
 
@@ -62,6 +73,9 @@ export const Register = (props) => {
           <option value="Marine and Naval Architecture">Marine and Naval Architecture</option>
           <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
         </select>
+
+        <label htmlFor="contact">Contact No.</label>
+        <input value={contact} onChange={(e) => setContact(e.target.value)} type="text" placeholder="07********" id="contact" name="contact" />
         
         <label htmlFor="password">Password</label>
         <input value={pass} onChange={(e) => setPass(e.target.value)} type="password" placeholder="********" id="password" name="password" />
@@ -70,8 +84,8 @@ export const Register = (props) => {
         <input value={confirmPass} onChange={(e) => setConfirmPass(e.target.value)} type="password" placeholder="********" id="confirmPassword" name="confirmPassword" />
         <button type="submit"><a href="/">Register</a></button>
       </form>
-      <button className="link-btn" >
-      <a href="/">Already have an account? Login here.</a>
+      <button className="link-btn" onClick={() => props.onFormSwitch('login')}>
+        Already have an account? Login here.
       </button>
     </div>
   );
