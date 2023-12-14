@@ -1,12 +1,38 @@
 import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 export const Login = (props) => {
     const [register, setRegister] = useState('');
     const [pass, setPass] = useState('');
+    const navigate = useNavigate();
+
+    const handleLogin = async (user) => {
+        const { role} = user;
+    
+        switch (role) {
+          case 'Student':
+            navigate('/StudentPage');
+            break;
+          case 'Admin':
+            navigate('/AdminPage');
+            break;
+          case 'Academic Staff':
+            navigate('/AcademicStaffPage');
+            break;
+          case 'Maintenance Division':
+            navigate('/MaintenanceDivisionPage');
+            break;
+          default:
+            console.error('Unknown role:', role);
+            break;
+        }
+      };
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log(register);
+        
+        
         
     }
 
