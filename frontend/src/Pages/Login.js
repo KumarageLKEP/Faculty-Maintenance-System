@@ -68,7 +68,7 @@ function Login(){
                 <input value={regNo} onChange={(e) => setRegNo(e.target.value)}type="regNo" placeholder="EG/____/____" id="regNo" name="regNo" />
                 <label htmlFor="password">password</label>
                 <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit"> <a href="/dashboard">Login</a></button>
+                <button type="submit"> Login</button>
             </form>
             <button className="link-btn" ><a href="/register">Don't have an account? Register here.</a></button>
         </div>
