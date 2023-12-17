@@ -11,7 +11,8 @@ function StudentPage() {
   console.log('User ID:', Id);
 
   return (
-    <div className="student-page-container">
+    <div className='main-container'>
+          <div className="student-page-container">
       <div className="left-section">
         <MaintenanceRequests />
         <Link to={`/add-request/${Id}`}>
@@ -22,6 +23,8 @@ function StudentPage() {
         <OngoingMaintenance />
       </div>
     </div>
+    </div>
+
   );
 }
 

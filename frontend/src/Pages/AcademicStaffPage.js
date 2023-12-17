@@ -2,7 +2,7 @@ import React from 'react'
 
 function AcademicStaffPage() {
   return (
-    <div>AcademicStaffPage</div>
+    <div className='main-container'>AcademicStaffPage</div>
   )
 }
 
