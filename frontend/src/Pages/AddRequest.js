@@ -66,7 +66,8 @@ function AddRequest() {
   };
   
   return (
-    <div className="auth-form-container">
+    <div className="main-container">
+          <div className="auth-form-container">
       <h2>Maintenance Request</h2>
       <form className="register-form" encType="multipart/form-data">
         <label htmlFor="place">Place</label>
@@ -114,6 +115,8 @@ function AddRequest() {
         </button>
       </form>
     </div>
+    </div>
+
   );
 }
 

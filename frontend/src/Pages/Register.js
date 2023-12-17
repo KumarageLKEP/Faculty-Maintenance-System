@@ -84,7 +84,8 @@ function Register() {
   };
 
   return (
-    <div className="auth-form-container">
+    <div className="main-container">
+          <div className="auth-form-container">
       <h2>Register</h2>
       <form className="register-form">
         <label htmlFor="name">Full name</label>
@@ -138,6 +139,8 @@ function Register() {
 
 
     </div>
+    </div>
+
   );
 }
 

@@ -1,4 +1,5 @@
-.App {
+
+.main-container {
   text-align: center;
   display: flex;
   min-height: 100vh;
@@ -8,6 +9,12 @@
   color: white;
   background-image: linear-gradient(79deg, #3951db, #706fc6 48%, #504df7);
 }
+
+.MaintenanceRequestDetail .table-container {
+  color: black;
+  background-color: #f0f0f0;
+}
+
 
 .auth-form-container, .login-form, .register-form {
   display: flex;
@@ -69,6 +76,23 @@ button {
   border: 1px solid white;
 }
 
+.button-style {
+  background-color: blue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
+
+.table-container {
+  margin: 70px 10px 0 10px;
+  background-color: blanchedalmond; 
+  align-items: center;
+  position: relative;
+  overflow:visible;
+
+}
 
 

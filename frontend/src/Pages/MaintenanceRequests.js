@@ -22,7 +22,7 @@ function MaintenanceRequests() {
   }, [submittedBy]);
 
   return (
-    <div>
+    <div >
       <h2>Maintenance Requests</h2>
       {error ? (
         <p>Error: {error}</p>

@@ -10,7 +10,7 @@ function OngoingMaintenance() {
   ];
 
   return (
-    <div>
+    <div className='main-container'>
       <h2>Ongoing Maintenance</h2>
       <ul>
         {ongoingMaintenance.map((task, index) => (

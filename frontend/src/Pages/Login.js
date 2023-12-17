@@ -60,7 +60,8 @@ function Login(){
 
     
     return (
-        <h2> Faculty Maintenance Management System (FMMS)
+      <div className='main-container'>
+               <h2> Faculty Maintenance Management System (FMMS)
         <div className="auth-form-container">
            
             <h2>Login</h2>
@@ -74,6 +75,8 @@ function Login(){
             <button className="link-btn" ><a href="/register">Don't have an account? Register here.</a></button>
         </div>
         </h2>
+      </div>
+
     );
 }
 
