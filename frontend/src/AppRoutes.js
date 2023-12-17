@@ -6,6 +6,7 @@ import AdminPage from './Pages/AdminPage';
 import AcademicStaffPage from './Pages/AcademicStaffPage';
 import StudentPage from './Pages/StudentPage';
 import MaintenanceDivisionPage from './Pages/MaintenanceDivisionPage';
+import AddRequest from './Pages/AddRequest';
 
 
 
@@ -18,6 +19,7 @@ export default function AppRoute() {
       <Route path ='/academicStaffPage'element = {<AcademicStaffPage/>}/>
       <Route path ='/studentPage'element = {<StudentPage/>}/>
       <Route path ='/maintenanceDivisionPage'element = {<MaintenanceDivisionPage/>}/>
+      <Route path ='/add-request'element = {<AddRequest/>}/>
 
     </Routes>
 

@@ -50,3 +50,25 @@ button {
   text-decoration: underline;
 }
 
+
+.student-page-container {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.left-section {
+  flex: 1;
+  border: 1px solid white;
+  margin-right: 20px;
+}
+
+.right-section {
+  flex: 1;
+  margin-left: 20px;
+  border: 1px solid white;
+}
+
+
+
+
