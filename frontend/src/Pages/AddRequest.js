@@ -1,65 +1,76 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function AddRequest() {
+  const { Id } = useParams();
+  const navigate = useNavigate();
+  console.log('User ID:', Id);
+
   const [formData, setFormData] = useState({
     place: '',
     issueType: '',
     priority: '',
-    image: '',
+    image: null,
     description: '',
+    submittedBy: Id,
   });
 
-  const navigate = useNavigate();
-
   const handleInputChange = (e) => {
-    
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
-  
+  const handleImageChange = (e) => {
+    const file = e.target.files[0];
+    setFormData({ ...formData, image: file });
+  };
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault();
 
-    const { place, issueType, priority, image, description } = formData;
+    const { place, issueType, priority, image, description, submittedBy } = formData;
 
-    const data = {
-      place,
-      issueType,
-      priority,
-      image,
-      description,
-    };
+    const data = new FormData();
+    data.append('place', place);
+    data.append('issueType', issueType);
+    data.append('priority', priority);
+    data.append('image', image);
+    data.append('description', description);
+    data.append('submittedBy', submittedBy);
 
-    axios.post('http://localhost:8000/maintenanceRequest', data)
-      .then((res) => {
-        if (res.data.success) {
-          alert('Request Created Successfully');
-          setFormData({
-            place: '',
-            issueType: '',
-            priority: '',
-            image: '',
-            description: '',
-          });
-
-          navigate('/studentPage');
-        }
-      })
-      .catch((error) => {
-        // Handle errors
-        console.error(error);
+    try {
+      const response = await axios.post('http://localhost:8000/maintenanceRequest', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       });
-  };
 
+      if (response.data.success) {
+        toast.success('Request Created Successfully');
+        setFormData({
+          place: '',
+          issueType: '',
+          priority: '',
+          image: null,
+          description: '',
+          submittedBy: Id,
+        });
+
+        navigate(`/studentPage/${Id}`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
   return (
     <div className="auth-form-container">
       <h2>Maintenance Request</h2>
-      <form className="register-form">
-      <label htmlFor="department">Place</label>
-        <select value={formData.department} onChange={handleInputChange}  name="department">
+      <form className="register-form" encType="multipart/form-data">
+        <label htmlFor="place">Place</label>
+        <select value={formData.place} onChange={handleInputChange} name="place">
           <option value="">Select Place</option>
           <option value="Electrical and Information Department">Electrical and Information Department</option>
           <option value="Civil and Environmental Department">Civil and Environmental Department</option>
@@ -70,8 +81,8 @@ function AddRequest() {
           <option value="Admin Sector">Admin Sector</option>
         </select>
 
-        <label htmlFor="department">Issue Type</label>
-        <select value={formData.department} onChange={handleInputChange}  name="department">
+        <label htmlFor="issueType">Issue Type</label>
+        <select value={formData.issueType} onChange={handleInputChange} name="issueType">
           <option value="">Select Issue Type</option>
           <option value="Electrical">Electrical</option>
           <option value="Plumbing">Plumbing</option>
@@ -84,31 +95,24 @@ function AddRequest() {
           <option value="Other">Other</option>
         </select>
 
-        <label htmlFor="department">Priority</label>
-        <select value={formData.department} onChange={handleInputChange}  name="department">
+        <label htmlFor="priority">Priority</label>
+        <select value={formData.priority} onChange={handleInputChange} name="priority">
           <option value="">Select Priority</option>
           <option value="High">High</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
         </select>
 
-        <label htmlFor="contactNumber">Image</label>
-        <input value={formData.contactNumber} onChange={handleInputChange} type="text" placeholder="07********" name="contactNumber" />
+        <label htmlFor="image">Image</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} name="image" />
 
-        <label htmlFor="password">Description</label>
-        <input value={formData.password} onChange={handleInputChange} type="text" placeholder="********"  name="password" />
+        <label htmlFor="description">Description</label>
+        <input value={formData.description} onChange={handleInputChange} type="text" name="description" />
 
-        <button
-            className="btn btn-success"
-            type="submit"
-        
-            onClick={onSubmit}
-          >
-            <i className="far fa-check-square"></i>&nbsp; Register
-          </button>
+        <button className="btn btn-success" type="submit" onClick={onSubmit}>
+          <i className="far fa-check-square"></i>&nbsp; Register
+        </button>
       </form>
-
-
     </div>
   );
 }

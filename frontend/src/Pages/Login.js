@@ -9,26 +9,27 @@ function Login(){
     const [password, setPassword] = useState('');
 
     const handleLogin = async (user) => {
-        const { role} = user;
+      const { role, _id: id } = user; // Use _id for MongoDB document ID
     
-        switch (role) {
-          case 'Student':
-            navigate('/studentPage');
-            break;
-          case 'Admin':
-            navigate('adminPage');
-            break;
-          case 'Academic Staff':
-            navigate('/academicStaffPage');
-            break;
-          case 'Maintenance Division':
-            navigate('/maintenanceDivisionPage');
-            break;
-          default:
-            console.error('Unknown role:', role);
-            break;
-        }
-      };
+      switch (role) {
+        case 'Student':
+          navigate(`/studentPage/${id}`);
+          break;
+        case 'Admin':
+          navigate(`/adminPage/${id}`);
+          break;
+        case 'Academic Staff':
+          navigate(`/academicStaffPage/${id}`);
+          break;
+        case 'Maintenance Division':
+          navigate(`/maintenanceDivisionPage/${id}`);
+          break;
+        default:
+          console.error('Unknown role:', role);
+          break;
+      }
+    };
+    
 
       const handleSubmit = async (e) => {
         e.preventDefault();

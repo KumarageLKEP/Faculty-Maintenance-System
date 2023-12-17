@@ -1,17 +1,56 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('multer');
+const path = require('path');
+const mongoose = require('mongoose'); // Import mongoose
+
 const MaintenanceRequest = require('../models/maintenanceRequest');
 
-// Create a new maintenance request
-router.post('/maintenanceRequest', async (req, res) => {
-  try {
-    const newMaintenanceRequest = new MaintenanceRequest(req.body);
-    await newMaintenanceRequest.save();
-    res.status(201).json({ success: 'Maintenance Request Created Successfully' });
-  } catch (error) {
-    res.status(400).json({ error: error.message });
-  }
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads/');
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+  },
 });
+
+const upload = multer({
+  storage: storage,
+  limits: { fileSize: 1000000 },
+}).single('image');
+
+router.post('/maintenanceRequest', (req, res) => {
+  upload(req, res, async (err) => {
+    if (err) {
+      console.error(err);
+      return res.status(500).json({ error: 'Error uploading file' });
+    }
+
+    try {
+      const { place, issueType, priority, description } = req.body;
+
+      const newMaintenanceRequest = new MaintenanceRequest({
+        place,
+        issueType,
+        priority,
+        image: req.file.path, // Save the file path in the database
+        description,
+        submittedBy: req.body.submittedBy, // Add submittedBy field
+      });
+
+      const savedMaintenanceRequest = await newMaintenanceRequest.save();
+
+      res.json({ success: 'Maintenance Request Created Successfully', newMaintenanceRequest: savedMaintenanceRequest });
+    } catch (error) {
+      res.status(400).json({ message: 'Maintenance Request creation unsuccessful', error: error.message });
+    }
+  });
+});
+
+
+
+
 
 // Get all maintenance requests
 router.get('/maintenanceRequests', async (req, res) => {
@@ -38,6 +77,18 @@ router.get('/maintenanceRequest/:id', async (req, res) => {
     return res.status(500).json({ success: false, error: err.message });
   }
 });
+
+// Get all maintenance requests for a specific user
+router.get('/maintenanceRequests/:submittedBy', async (req, res) => {
+  try {
+    const submittedBy = req.params.submittedBy;
+    const maintenanceRequests = await MaintenanceRequest.find({ submittedBy }).exec();
+    res.status(200).json({ success: true, existingMaintenanceRequests: maintenanceRequests });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 
 // Update a maintenance request
 router.put('/maintenanceRequest/update/:id', async (req, res) => {
