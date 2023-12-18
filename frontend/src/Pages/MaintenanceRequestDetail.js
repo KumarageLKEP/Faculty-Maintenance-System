@@ -28,6 +28,13 @@ function MaintenanceRequestDetail() {
     fetchMaintenanceRequest();
   }, [id]);
 
+  const getBase64Image = (buffer) => {
+    const uint8Array = new Uint8Array(buffer);
+    const base64 = btoa(String.fromCharCode.apply(null, uint8Array));
+    return `data:image/jpeg;base64,${base64}`;
+  };
+  
+
   return (
     <div>
       <div className="MaintenanceRequestDetail">
@@ -60,10 +67,7 @@ function MaintenanceRequestDetail() {
                   <th scope="row">Image</th>
                   <td>
                     <img
-                      src={`data:image/jpeg;base64,${new Uint8Array(maintenanceRequest.image.data).reduce(
-                        (data, byte) => data + String.fromCharCode(byte),
-                        ''
-                      )}`}
+                      src={getBase64Image(maintenanceRequest.image.data)}
                       alt="Maintenance Request"
                       style={{ maxWidth: '100px', maxHeight: '100px' }}
                     />
