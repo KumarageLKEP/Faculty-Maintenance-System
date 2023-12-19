@@ -13,12 +13,15 @@ function MaintenanceRequestDetail() {
     const fetchMaintenanceRequest = async () => {
       try {
         const response = await axios.get(`http://localhost:8000/maintenanceRequest/${id}`);
+        console.log('API Response:', response.data); // Log the entire API response
+
         if (response.data.success) {
           setMaintenanceRequest(response.data.maintenanceRequest);
         } else {
           setError('Failed to fetch maintenance request');
         }
       } catch (error) {
+        console.error('Error fetching maintenance request:', error); // Log the error
         setError('Error fetching maintenance request');
       } finally {
         setLoading(false);
@@ -28,56 +31,43 @@ function MaintenanceRequestDetail() {
     fetchMaintenanceRequest();
   }, [id]);
 
+  console.log('Maintenance Request:', maintenanceRequest); // Log the maintenanceRequest
+
+  // Check if maintenanceRequest is null
+  if (maintenanceRequest === null) {
+    return <p>Loading...</p>;
+  }
+
+  // Decode the image
+  const imageBase64 = maintenanceRequest.image.toString('base64');
+  const decodedImage = `data:image/jpeg;base64,${imageBase64}`;
+
   return (
     <div>
-      <div className="MaintenanceRequestDetail">
+      <div>
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
             <h4>Maintenance Request Details</h4>
           </div>
         </div>
 
-        {loading && <p>Loading...</p>}
-        {error && <p>Error: {error}</p>}
-
-        {maintenanceRequest && (
-          <table className="table table-success table-striped" style={{ marginTop: '40px' }}>
-            <tbody>
-              <tr>
-                <th scope="row">Place</th>
-                <td>{maintenanceRequest.place}</td>
-              </tr>
-              <tr>
-                <th scope="row">Issue Type</th>
-                <td>{maintenanceRequest.issueType}</td>
-              </tr>
-              <tr>
-                <th scope="row">Description</th>
-                <td>{maintenanceRequest.description}</td>
-              </tr>
-              {maintenanceRequest.image && maintenanceRequest.image.data && (
-                <tr>
-                  <th scope="row">Image</th>
-                  <td>
-                    <img
-                      src={`data:image/jpeg;base64,${new Uint8Array(maintenanceRequest.image.data).reduce(
-                        (data, byte) => data + String.fromCharCode(byte),
-                        ''
-                      )}`}
-                      alt="Maintenance Request"
-                      style={{ maxWidth: '100px', maxHeight: '100px' }}
-                    />
-                  </td>
-                </tr>
-              )}
-              <tr>
-                <th scope="row">Priority</th>
-                <td>{maintenanceRequest.priority}</td>
-              </tr>
-              {/* Add more rows for other properties if needed */}
-            </tbody>
-          </table>
-        )}
+        <div>
+          <p>Place: {maintenanceRequest.place}</p>
+          <p>Issue Type: {maintenanceRequest.issueType}</p>
+          <p>Description: {maintenanceRequest.description}</p>
+          {maintenanceRequest.image && (
+            <div>
+              <p>Image:</p>
+              <img
+                src={decodedImage}
+                alt="Maintenance Request"
+                style={{ maxWidth: '100%', maxHeight: 'auto' }}
+              />
+            </div>
+          )}
+          <p>Priority: {maintenanceRequest.priority}</p>
+          {/* Add more details if needed */}
+        </div>
       </div>
     </div>
   );
