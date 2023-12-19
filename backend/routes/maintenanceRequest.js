@@ -3,8 +3,11 @@ const router = express.Router();
 const multer = require('multer');
 const path = require('path');
 const mongoose = require('mongoose'); // Import mongoose
+const app = express();
 
 const MaintenanceRequest = require('../models/maintenanceRequest');
+
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -64,6 +67,7 @@ router.get('/maintenanceRequests', async (req, res) => {
 });
 
 // Get a specific maintenance request
+
 router.get('/maintenanceRequest/:id', async (req, res) => {
   try {
     const requestId = req.params.id;
@@ -73,7 +77,16 @@ router.get('/maintenanceRequest/:id', async (req, res) => {
       return res.status(404).json({ success: false, message: 'Maintenance Request not found' });
     }
 
-    return res.status(200).json({ success: true, maintenanceRequest });
+    // Convert the Buffer to a base64-encoded string
+    const imageBase64 = maintenanceRequest.image.toString('base64');
+
+    // Create a new object with the image property set to the base64 string
+    const maintenanceRequestWithBase64Image = {
+      ...maintenanceRequest.toObject(),
+      image: imageBase64,
+    };
+
+    return res.status(200).json({ success: true, maintenanceRequest: maintenanceRequestWithBase64Image });
   } catch (err) {
     return res.status(500).json({ success: false, error: err.message });
   }

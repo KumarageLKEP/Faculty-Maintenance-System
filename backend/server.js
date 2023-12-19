@@ -3,6 +3,7 @@ const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
 const cors = require('cors');
+const path = require('path');
 
 
 //import routes
@@ -12,6 +13,7 @@ const maintenanceRequestRoute = require('./routes/maintenanceRequest');
 //app midlware
 app.use(bodyParser.json());
 app.use(cors());
+
 
 app.use(userRoute);
 app.use(maintenanceRequestRoute);
