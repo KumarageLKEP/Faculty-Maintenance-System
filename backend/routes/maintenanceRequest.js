@@ -139,4 +139,51 @@ router.post('/maintenanceRequest/save', async (req, res) => {
   }
 });
 
+router.post('/maintenanceRequest/:id/approve', async (req, res) => {
+  try {
+    // Find the maintenance request by ID
+    const maintenanceRequest = await MaintenanceRequest.findById(req.params.id);
+
+    // If maintenance request is not found, return 404
+    if (!maintenanceRequest) {
+      return res.status(404).json({ success: false, message: 'Maintenance request not found' });
+    }
+
+    // Update the status of the maintenance request to "On Going"
+    maintenanceRequest.status = 'In Progress';
+    await maintenanceRequest.save();
+
+    // Send a success response
+    res.status(200).json({ success: true, message: 'Maintenance request approved successfully' });
+  } catch (error) {
+    // If an error occurs, send a 500 internal server error response
+    console.error('Error approving maintenance request:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+router.post('/maintenanceRequest/:id/completed', async (req, res) => {
+  try {
+    // Find the maintenance request by ID
+    const maintenanceRequest = await MaintenanceRequest.findById(req.params.id);
+
+    // If maintenance request is not found, return 404
+    if (!maintenanceRequest) {
+      return res.status(404).json({ success: false, message: 'Maintenance request not found' });
+    }
+
+    // Update the status of the maintenance request to "On Going"
+    maintenanceRequest.status = 'Completed';
+    await maintenanceRequest.save();
+
+    // Send a success response
+    res.status(200).json({ success: true, message: 'Maintenance request approved successfully' });
+  } catch (error) {
+    // If an error occurs, send a 500 internal server error response
+    console.error('Error approving maintenance request:', error);
+    res.status(500).json({ success: false, message: 'Internal Server Error' });
+  }
+});
+
+
 module.exports = router;
