@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import axios from 'axios';
 import '../App.css';
 
 function MaintenanceRequestDetail() {
+  const navigate = useNavigate(); // Initialize navigate
   const { id } = useParams();
   const [maintenanceRequest, setMaintenanceRequest] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -32,6 +33,38 @@ function MaintenanceRequestDetail() {
   }, [id]);
 
   console.log('Maintenance Request:', maintenanceRequest); // Log the maintenanceRequest
+
+  const handleApprove = async () => {
+    try {
+      const response = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/approve`);
+      if (response.data.success) {
+        // Update maintenanceRequest state to reflect the status change
+        setMaintenanceRequest(prevState => ({
+          ...prevState,
+          status: 'In Progress'
+        }));
+        
+        // Navigate back to the previous page
+        navigate(-1); // Go back one page
+      } else {
+        setError('Failed to approve maintenance request');
+      }
+    } catch (error) {
+      console.error('Error approving maintenance request:', error);
+      setError('Error approving maintenance request');
+    }
+  };
+  
+
+  const handleReject = async () => {
+    // You can implement the logic for rejecting the maintenance request here
+    // For example, you can make a POST request to your backend API to update the status of the maintenance request to "Rejected"
+    // Example:
+    // const response = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/reject`);
+    // if (response.data.success) {
+    //   // Update maintenanceRequest state or perform any necessary actions
+    // }
+  };
 
   // Check if maintenanceRequest is null
   if (maintenanceRequest === null) {
@@ -66,7 +99,9 @@ function MaintenanceRequestDetail() {
             </div>
           )}
           <p>Priority: {maintenanceRequest.priority}</p>
-          {/* Add more details if needed */}
+          <p>Status: {maintenanceRequest.status}</p>
+          <button onClick={handleApprove}>Approve</button>
+          <button onClick={handleReject}>Reject</button>
         </div>
       </div>
     </div>
