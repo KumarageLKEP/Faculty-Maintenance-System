@@ -1,5 +1,5 @@
 .body{
-    background-color: aliceblue;
+    background: #FFF
 }
 
 
@@ -8,7 +8,12 @@
 font-family: Inter;
 font-size: 40px;
 font-style: normal;
-font-weight: 500;
+
 line-height: normal;
-margin-top: -60px;
+
+}
+
+.Request_font{
+    font-weight: bolder;
+    margin-bottom: -100px;
 }

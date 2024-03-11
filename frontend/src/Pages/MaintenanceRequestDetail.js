@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+
+
 import '../App.css';
 
 function MaintenanceRequestDetail() {
@@ -47,7 +49,7 @@ function MaintenanceRequestDetail() {
       <div>
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
-            <h4>Maintenance Request Details</h4>
+            <h4 className = "request_text" >Maintenance Request Details</h4>
           </div>
         </div>
 
@@ -69,6 +71,7 @@ function MaintenanceRequestDetail() {
           {/* Add more details if needed */}
         </div>
       </div>
+      
     </div>
   );
 }

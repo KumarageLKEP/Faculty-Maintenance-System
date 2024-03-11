@@ -68,7 +68,7 @@ function AddRequest() {
   
   return (
     <div className={Classes.auth_form_container}>
-    <h2>Maintenance Request</h2>
+    <h2 className={Classes.auth_form_container_text}>Maintenance Request Form</h2>
     <div className={Classes.main_maincontainer}>
          
     <div className={Classes.mini_container}>
@@ -119,6 +119,7 @@ function AddRequest() {
       </form>
     </div>
     </div>
+    <img src='/images/maintainance_2.jpg' alt='login Background' className={Classes.imageClass2} />
     </div>
 
 

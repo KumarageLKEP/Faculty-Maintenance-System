@@ -25,7 +25,7 @@ function MaintenanceRequests() {
   return (
     
     <div className={Classes.Maintenance_container}>
-      <h2>Maintenance Requests</h2>
+      <h2 className= {Classes.Request_font}>Maintenance Requests</h2>
       {error ? (
         <p>Error: {error}</p>
       ) : (
