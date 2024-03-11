@@ -1,6 +1,7 @@
 import React from 'react';
 import MaintenanceRequests from './MaintenanceRequests';
 import StudentOngoingMaintenance from './StudentOngoingMaintenance';
+import StudentNotifications from './StudentNotifications'; // Import the StudentNotifications component
 import { Link, useLocation } from 'react-router-dom';
 
 function StudentPage() {
@@ -14,13 +15,16 @@ function StudentPage() {
     <div className='main-container'>
       <div className="student-page-container">
         <div className="left-section">
+          
           <MaintenanceRequests />
           <Link to={`/add-request/${userId}`}>
             <button>Add Request</button>
           </Link>
         </div>
         <div className="right-section">
-          <StudentOngoingMaintenance userId={userId} />
+        <StudentNotifications userId={userId} /> 
+        <StudentOngoingMaintenance userId={userId} />
+          
         </div>
       </div>
     </div>
