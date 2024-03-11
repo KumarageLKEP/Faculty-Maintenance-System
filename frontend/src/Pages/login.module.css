@@ -1,0 +1,127 @@
+.body{
+    background: #FFF;
+}
+
+.main {
+    width: 1304px;
+    height: 679px;
+    flex-shrink: 0;
+    margin-top: 150px;
+    margin-left: 250px;
+  }
+  
+  .aut_form_container {
+    color: #000;
+    font-family: Inter;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin-bottom: 50px;
+  }
+  
+  .text_1 {
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+  
+  .text_2{
+    color: #000;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+  }
+
+  .container_1 {
+    width: 445px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: rgba(238, 68, 221, 0.14);
+  }
+  
+  /* Add a style for the placeholder */
+.container_1::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+  
+  .button {
+    width: 445px;
+    height: 47px;
+    flex-shrink: 0;
+    border-radius: 5px;
+    background: #474bca;
+  }
+  .container_2{
+    width: 445px;
+height: 47px;
+flex-shrink: 0;
+border-radius: 5px;
+background: rgba(238, 68, 221, 0.14);
+  }
+
+  .container_2::placeholder {
+    color: rgba(0, 0, 0, 0.25);
+font-family: Inter;
+font-size: 15px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+  .login_text{
+    color: #FFF;
+font-family: Inter;
+font-size: 20px;
+font-style: normal;
+font-weight: 500;
+line-height: normal;
+  }
+
+  .text_3 {
+    color: #000;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+  }
+  
+  .text_4 {
+    color: #474BCA;
+    font-family: Inter;
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-decoration-line: underline;
+  }
+  
+  .link-btn {
+    /* Add any button styles here */
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .imageClass1{
+    width: 450px;
+height: 371px;
+flex-shrink: 0;
+background:  lightgray 50% , cover no-repeat;
+margin-top : -420px;
+margin-left: 600px;
+
+
+  }

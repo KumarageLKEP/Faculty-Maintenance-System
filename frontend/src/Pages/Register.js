@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import Classes from '../Pages/register.module.css';
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -84,61 +85,66 @@ function Register() {
   };
 
   return (
-    <div className="main-container">
-          <div className="auth-form-container">
-      <h2>Register</h2>
+    <div className={Classes.main_container}>
+          <div className={Classes.auth_form_container}>
+      <h2>Sign Up now</h2>
       <form className="register-form">
-        <label htmlFor="name">Full name</label>
-        <input value={formData.fullName} name="fullName" onChange={handleInputChange} placeholder="Full Name" type="text"/>
+        <label htmlFor="name" className={Classes.text_signup}>Full name</label>
+        <input value={formData.fullName} className={Classes.con} name="fullName" onChange={handleInputChange} placeholder="Full Name" type="text"/>
 
-        <label htmlFor="email">Email</label>
-        <input value={formData.email} onChange={handleInputChange} type="text"  name="email" />
+        <label htmlFor="email" className={Classes.text_signup}>Email</label>
+        <input value={formData.email} className={Classes.con} onChange={handleInputChange} type="text" placeholder="Email"  name="email" />
 
-        <label htmlFor="regNo">Register No.</label>
-        <input value={formData.regNo} onChange={handleInputChange} type="text" placeholder="EG/____/____" name="regNo" />
+        <label htmlFor="regNo"className={Classes.text_signup}>Register No.</label>
+        <input value={formData.regNo} className={Classes.con} onChange={handleInputChange} type="text" placeholder="Register No." name="regNo" />
 
-        <label htmlFor="role">Role</label>
+        <label htmlFor="role"className={Classes.text_signup}>Role</label>
         <input
           value={formData.role}
+          className={Classes.con}
           onChange={handleInputChange}
+          placeholder="Role"
           type="text"
           id="role"
           name="role"
         />
 
-        <label htmlFor="department">Department</label>
-        <select value={formData.department} onChange={handleInputChange}  name="department">
-          <option value="">Select Department</option>
-          <option value="Electrical and Information Department">Electrical and Information Department</option>
-          <option value="Civil and Environmental Department">Civil and Environmental Department</option>
-          <option value="Mechanical and Manufacturing Department">Mechanical and Manufacturing Department</option>
-          <option value="Marine and Naval Architecture">Marine and Naval Architecture</option>
-          <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
-          <option value="Maintenance Division">Maintenance Division</option>
-          <option value="Admin Sector">Admin Sector</option>
+        <label htmlFor="department"className={Classes.text_signup}>Department</label>
+        <select value={formData.department} onChange={handleInputChange}  className={Classes.con} name="department">
+          <option value="" className={Classes.department} >Select Department</option>
+          <option value="Electrical and Information Department" className={Classes.department}>Electrical and Information Department</option>
+          <option value="Civil and Environmental Department" className={Classes.department}> Civil and Environmental Department</option>
+          <option value="Mechanical and Manufacturing Department" className={Classes.department}>Mechanical and Manufacturing Department</option>
+          <option value="Marine and Naval Architecture" className={Classes.department}>Marine and Naval Architecture</option>
+          <option value="Interdisciplinary Studies" className={Classes.department}>Interdisciplinary Studies</option>
+          <option value="Maintenance Division" className={Classes.department}>Maintenance Division</option>
+          <option value="Admin Sector"className={Classes.department}>Admin Sector</option>
         </select>
 
-        <label htmlFor="contactNumber">Contact No.</label>
-        <input value={formData.contactNumber} onChange={handleInputChange} type="text" placeholder="07********" name="contactNumber" />
+        <label htmlFor="contactNumber" className={Classes.text_signup}>Contact No.</label>
+        <input value={formData.contactNumber} className={Classes.con} onChange={handleInputChange} type="text" placeholder="07********" name="contactNumber" />
 
-        <label htmlFor="password">Password</label>
-        <input value={formData.password} onChange={handleInputChange} type="text" placeholder="********"  name="password" />
+        <label htmlFor="password" className={Classes.text_signup}>Password</label>
+        <input value={formData.password}className={Classes.con} onChange={handleInputChange} type="text" placeholder="********"  name="password" />
 
-        <label htmlFor="confirmPassword">Confirm Password</label>
-        <input value={formData.confirmPassword} onChange={handleInputChange} type="text" placeholder="********"  name="confirmPassword" />
+        <label htmlFor="confirmPassword" className={Classes.text_signup}>Confirm Password</label>
+        <input value={formData.confirmPassword}className={Classes.con} onChange={handleInputChange} type="text" placeholder="********"  name="confirmPassword" />
 
         <button
-            className="btn btn-success"
+            
+            className={Classes.btn_success}
             type="submit"
         
             onClick={onSubmit}
           >
-            <i className="far fa-check-square"></i>&nbsp; Register
+           <p className={Classes.text_signupnow}>Sign Up</p>
           </button>
+
       </form>
 
 
     </div>
+    <img src='/images/login_new.jpg' alt='login Background' className={Classes.imageClass2} />
     </div>
 
   );

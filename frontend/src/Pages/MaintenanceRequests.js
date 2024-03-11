@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import Classes from '../Pages/maintainancerequests.moule.css'
 
 function MaintenanceRequests() {
   const { Id } = useParams();
@@ -22,7 +23,8 @@ function MaintenanceRequests() {
   }, [submittedBy]);
 
   return (
-    <div >
+    
+    <div className={Classes.Maintenance_container}>
       <h2>Maintenance Requests</h2>
       {error ? (
         <p>Error: {error}</p>

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import classes from '../Pages/login.module.css';
 
 function Login(){
 
@@ -60,22 +61,30 @@ function Login(){
 
     
     return (
-      <div className='main-container'>
-               <h2> Faculty Maintenance Management System (FMMS)
-        <div className="auth-form-container">
+      <div className={classes.main}>
+              
+        <div >
            
-            <h2>Login</h2>
+            <h2 className={classes.aut_form_container}>Login now</h2>
             <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="register">Register No.</label>
-                <input value={regNo} onChange={(e) => setRegNo(e.target.value)}type="regNo" placeholder="EG/____/____" id="regNo" name="regNo" />
-                <label htmlFor="password">password</label>
-                <input value={password} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit"> Login</button>
+                <label htmlFor="register"className={classes.text_1} >User Name</label>
+                <input value={regNo} className={classes.container_1} onChange={(e) => setRegNo(e.target.value)} placeholder ="Enter your username" type="regNo" id="regNo" name="regNo" />
+                <label htmlFor="password"className={classes.text_2}>password</label>
+                <input value={password} className={classes.container_2} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
+                <button type="submit" className={classes.button} > <p className={classes.login_text}>Login</p></button>
             </form>
-            <button className="link-btn" ><a href="/register">Don't have an account? Register here.</a></button>
+            
+            <button className="link-btn">
+  <span className={classes.text_3}>Not registered yet? </span>
+  <a href="/register" className={classes.text_4}>Create an account SignUp</a>
+
+</button>
+
+
         </div>
-        </h2>
+        <img src='/images/login_new.jpg' alt='login Background' className={classes.imageClass1} />
       </div>
+      
 
     );
 }
