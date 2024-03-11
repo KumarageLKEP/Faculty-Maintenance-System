@@ -198,5 +198,23 @@ router.get('/maintenanceRequest/ongoingMaintenance/:userId', async (req, res) =>
   }
 });
 
+router.post('/maintenanceRequest/sendNotification', async (req, res) => {
+  try {
+    const { userId, message } = req.body;
+
+    // Here, you can implement the logic to send the notification to the user with the specified userId
+    // This could involve sending an email, a push notification, or any other method of communication
+
+    // For demonstration purposes, we'll simply log the notification details
+    console.log(`Notification sent to user ${userId}: ${message}`);
+
+    // Send a success response
+    res.json({ success: true, message: 'Notification sent successfully' });
+  } catch (error) {
+    console.error('Error sending notification:', error);
+    res.status(500).json({ success: false, message: 'Failed to send notification' });
+  }
+});
+
 
 module.exports = router;

@@ -36,16 +36,32 @@ function MaintenanceRequestDetail() {
 
   const handleApprove = async () => {
     try {
-      const response = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/approve`);
-      if (response.data.success) {
+      // Send a POST request to approve the maintenance request
+      const approveResponse = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/approve`);
+      
+      if (approveResponse.data.success) {
         // Update maintenanceRequest state to reflect the status change
         setMaintenanceRequest(prevState => ({
           ...prevState,
           status: 'In Progress'
         }));
-        
+  
+        // Send a notification to the relevant user
+        const notificationResponse = await axios.post('http://localhost:8000/sendNotification', {
+          userId: maintenanceRequest.submittedBy, // Use the submittedBy field for the user ID
+          message: 'Your maintenance request has been approved and is now in progress.'
+        });
+  
+        if (notificationResponse.data.success) {
+          // Notification sent successfully
+          console.log('Notification sent successfully');
+        } else {
+          // Error sending notification
+          console.error('Failed to send notification:', notificationResponse.data.message);
+        }
+  
         // Navigate back to the previous page
-        navigate(-1); // Go back one page
+        navigate(-1);
       } else {
         setError('Failed to approve maintenance request');
       }
@@ -54,6 +70,7 @@ function MaintenanceRequestDetail() {
       setError('Error approving maintenance request');
     }
   };
+  
   
 
   const handleReject = async () => {
