@@ -12,7 +12,8 @@ function AllRequests() {
     const fetchAllRequests = async () => {
       try {
         const response = await axios.get('http://localhost:8000/maintenanceRequests');
-        setAllRequests(response.data.existingMaintenanceRequests);
+        const pendingRequests = response.data.existingMaintenanceRequests.filter(request => request.status === 'Pending');
+        setAllRequests(pendingRequests);
       } catch (error) {
         setError(error.response?.data?.message || 'Error fetching maintenance requests');
       }
