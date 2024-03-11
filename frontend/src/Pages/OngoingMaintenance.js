@@ -25,23 +25,31 @@ function OngoingMaintenance() {
     fetchOngoingMaintenance();
   }, []);
 
-  const handleProgressChange = async (id, index, newProgress) => { // Include the ID parameter
+  const handleProgressChange = async (id, index, newProgress) => {
     const updatedMaintenance = [...ongoingMaintenance];
     updatedMaintenance[index].progress = newProgress;
-
+  
     if (newProgress === 100) {
       updatedMaintenance[index].status = 'Completed';
       try {
-        await axios.post(`http://localhost:8000/maintenanceRequest/${id}/completed`, { // Use the ID to make the PUT request
+        await axios.post(`http://localhost:8000/maintenanceRequest/${id}/completed`, {
           status: 'Completed'
         });
+  
+        // Send a notification when the task is completed
+        await axios.post('http://localhost:8000/sendNotification', {
+          userId: updatedMaintenance[index].submittedBy,
+          message: `Your maintenance request for "${updatedMaintenance[index].description}" has been completed.`
+        });
+  
       } catch (error) {
         console.error('Error updating maintenance request status:', error);
       }
     }
-
+  
     setOngoingMaintenance(updatedMaintenance);
   };
+  
 
   return (
     <div className='main-container'>
