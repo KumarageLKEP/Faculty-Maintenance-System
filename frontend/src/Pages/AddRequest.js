@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
+import Classes from '../Pages/addrequest.module.css';
 
 function AddRequest() {
   const { Id } = useParams();
@@ -66,12 +67,14 @@ function AddRequest() {
   };
   
   return (
-    <div className="main-container">
-          <div className="auth-form-container">
-      <h2>Maintenance Request</h2>
+    <div className={Classes.auth_form_container}>
+    <h2>Maintenance Request</h2>
+    <div className={Classes.main_maincontainer}>
+         
+    <div className={Classes.mini_container}>
       <form className="register-form" encType="multipart/form-data">
-        <label htmlFor="place">Place</label>
-        <select value={formData.place} onChange={handleInputChange} name="place">
+        <label htmlFor="place"  className={Classes.request_text}>Place</label>
+        <select value={formData.place} onChange={handleInputChange}  className={Classes.request_container} name="place">
           <option value="">Select Place</option>
           <option value="Electrical and Information Department">Electrical and Information Department</option>
           <option value="Civil and Environmental Department">Civil and Environmental Department</option>
@@ -82,8 +85,8 @@ function AddRequest() {
           <option value="Admin Sector">Admin Sector</option>
         </select>
 
-        <label htmlFor="issueType">Issue Type</label>
-        <select value={formData.issueType} onChange={handleInputChange} name="issueType">
+        <label htmlFor="issueType"  className={Classes.request_text}>Issue Type</label>
+        <select value={formData.issueType} onChange={handleInputChange} className={Classes.request_container} name="issueType">
           <option value="">Select Issue Type</option>
           <option value="Electrical">Electrical</option>
           <option value="Plumbing">Plumbing</option>
@@ -96,26 +99,28 @@ function AddRequest() {
           <option value="Other">Other</option>
         </select>
 
-        <label htmlFor="priority">Priority</label>
-        <select value={formData.priority} onChange={handleInputChange} name="priority">
-          <option value="">Select Priority</option>
+        <label htmlFor="priority"  className={Classes.request_text}>Priority</label>
+        <select value={formData.priority} onChange={handleInputChange}className={Classes.request_container} name="priority">
+          <option value=""  className={Classes.request_text}>Select Priority</option>
           <option value="High">High</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
         </select>
 
-        <label htmlFor="image">Image</label>
-        <input type="file" accept="image/*" onChange={handleImageChange} name="image" />
+        <label htmlFor="image"  className={Classes.request_text}> Image</label>
+        <input type="file" accept="image/*" onChange={handleImageChange} className={Classes.request_container} name="image" />
 
-        <label htmlFor="description">Description</label>
-        <input value={formData.description} onChange={handleInputChange} type="text" name="description" />
+        <label htmlFor="description"  className={Classes.request_text}>Description</label>
+        <input value={formData.description} onChange={handleInputChange} className={Classes.request_container} type="text" name="description" />
 
-        <button className="btn btn-success" type="submit" onClick={onSubmit}>
+        <button className={Classes.button_request} type="submit" onClick={onSubmit}>
           <i className="far fa-check-square"></i>&nbsp; Register
         </button>
       </form>
     </div>
     </div>
+    </div>
+
 
   );
 }
