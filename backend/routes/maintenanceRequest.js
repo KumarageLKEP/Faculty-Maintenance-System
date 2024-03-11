@@ -216,5 +216,30 @@ router.post('/maintenanceRequest/sendNotification', async (req, res) => {
   }
 });
 
+router.post('/maintenanceRequest/:id/reject', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    // Find the maintenance request by ID
+    const maintenanceRequest = await MaintenanceRequest.findById(id);
+
+    if (!maintenanceRequest) {
+      // If maintenance request is not found, return an error response
+      return res.status(404).json({ success: false, message: 'Maintenance request not found' });
+    }
+
+    // Update the status of the maintenance request to "Rejected"
+    maintenanceRequest.status = 'Rejected';
+    await maintenanceRequest.save();
+
+    // Return a success response
+    res.status(200).json({ success: true, message: 'Maintenance request rejected successfully' });
+  } catch (error) {
+    // If an error occurs, return an error response
+    console.error('Error rejecting maintenance request:', error);
+    res.status(500).json({ success: false, message: 'Failed to reject maintenance request' });
+  }
+});
+
 
 module.exports = router;
