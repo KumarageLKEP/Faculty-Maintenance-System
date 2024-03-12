@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
+import classes from '../Pages/maintainancedetails.module.css'
 
 
 import '../App.css';
@@ -45,33 +46,34 @@ function MaintenanceRequestDetail() {
   const decodedImage = `data:image/jpeg;base64,${imageBase64}`;
 
   return (
-    <div>
+    <div className= {classes.Details_container}>
       <div>
         <div className="row">
-          <div className="col-lg-9 mt-2 mb-2">
-            <h4 className = "request_text" >Maintenance Request Details</h4>
+          <div >
+            <div>
+            <h4 className ={classes.request_text} >Maintenance Request Details</h4>
           </div>
         </div>
 
-        <div>
-          <p>Place: {maintenanceRequest.place}</p>
-          <p>Issue Type: {maintenanceRequest.issueType}</p>
-          <p>Description: {maintenanceRequest.description}</p>
+        <div > 
+          <p className ={classes.container_1}>Place: {maintenanceRequest.place}</p>
+          <p className ={classes.container_1}>Issue Type: {maintenanceRequest.issueType}</p>
+          <p className ={classes.container_1}>Description: {maintenanceRequest.description}</p>
           {maintenanceRequest.image && (
             <div>
-              <p>Image:</p>
-              <img
+              <p className ={classes.container_1}>Image:</p>
+              <img className ={classes.container_1}
                 src={decodedImage}
                 alt="Maintenance Request"
                 style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
             </div>
           )}
-          <p>Priority: {maintenanceRequest.priority}</p>
+          <p className ={classes.container_1}>Priority: {maintenanceRequest.priority}</p>
           {/* Add more details if needed */}
         </div>
       </div>
-      
+      </div>
     </div>
   );
 }
