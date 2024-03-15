@@ -1,11 +1,12 @@
 import React from 'react'
 import classes from '../Components/header.module.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
         <header className={classes.header}>
           <div className={classes.container}>
+          <img src='/images/logo.jpeg' alt='logo Background' className={classes.imageClass2} />
             <p className={classes.FMMS}>
               ENG FMMS
             </p>
@@ -19,12 +20,15 @@ export default function Header() {
             <Link to="/Dashboard" className={classes.Dashboard}>
               DASHBOARD
             </Link>
+            <Link to="/" className={classes.Dashboard}>
+              LOGIN
+            </Link>
             
     
            
           </div>
 
-          <button type="submit" className={classes.button_login} > <p className={classes.login_text_2}>Login</p></button>
+          
         </header>
     
     

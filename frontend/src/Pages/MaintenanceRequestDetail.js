@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../App.css';
+import classes from '../Pages/maintainancedetails.module.css'
 
 function MaintenanceRequestDetail() {
   const navigate = useNavigate(); // Initialize navigate
@@ -114,30 +115,32 @@ function MaintenanceRequestDetail() {
   return (
     <div>
       <div>
+        <div className={classes.Details_container}>
         <div className="row">
           <div className="col-lg-9 mt-2 mb-2">
-            <h4>Maintenance Request Details</h4>
+            <h4 className={classes.request_text}>Maintenance Request Details</h4>
           </div>
         </div>
 
         <div>
-          <p>Place: {maintenanceRequest.place}</p>
-          <p>Issue Type: {maintenanceRequest.issueType}</p>
-          <p>Description: {maintenanceRequest.description}</p>
+          <p className={classes.container_1}>Place: {maintenanceRequest.place}</p>
+          <p className={classes.container_1}>Issue Type: {maintenanceRequest.issueType}</p>
+          <p className={classes.container_1}>Description: {maintenanceRequest.description}</p>
           {maintenanceRequest.image && (
             <div>
-              <p>Image:</p>
-              <img
+              <p className={classes.container_1}>Image:</p>
+              <img className={classes.container_1}
                 src={decodedImage}
                 alt="Maintenance Request"
                 style={{ maxWidth: '100%', maxHeight: 'auto' }}
               />
             </div>
           )}
-          <p>Priority: {maintenanceRequest.priority}</p>
-          <p>Status: {maintenanceRequest.status}</p>
-          <button onClick={handleApprove}>Approve</button>
-          <button onClick={handleReject}>Reject</button>
+          <p className={classes.container_1}>Priority: {maintenanceRequest.priority}</p>
+          <p className={classes.container_1}> Status: {maintenanceRequest.status}</p>
+          <button onClick={handleApprove} className={classes.button1}>Approve</button>
+          <button onClick={handleReject} className={classes.button2}>Reject</button>
+          </div>
         </div>
       </div>
     </div>

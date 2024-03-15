@@ -1,11 +1,12 @@
 .header{
     display: flex;
-width: 1700px;
+
+width: 100%;
+margin : 0;
 padding: 10px 25px;
 justify-content: space-between;
 align-items: center;
 background: var(--Base-White, #FFF);
-/* Shadow/Nav-shadown */
 box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.10);
 }
 
@@ -82,4 +83,8 @@ background: linear-gradient(225deg, #6675F7 0%, #57007B 100%);
 
 .login_text_2{
     color: #FFF;
+}
+
+.imageClass2{
+    width: 70px;
 }
