@@ -31,7 +31,7 @@ function MaintenanceRequests() {
       ) : (
         <ul>
           {maintenanceRequests.map((request) => (
-            <li key={request._id}>
+            <li  key={request._id}>
               {request.place} - {request.issueType}
             </li>
           ))}

@@ -101,7 +101,7 @@ function AddRequest() {
 
         <label htmlFor="priority"  className={Classes.request_text}>Priority</label>
         <select value={formData.priority} onChange={handleInputChange}className={Classes.request_container} name="priority">
-          <option value=""  className={Classes.request_text}>Select Priority</option>
+          <option value=""  >Select Priority</option>
           <option value="High">High</option>
           <option value="Low">Low</option>
           <option value="Medium">Medium</option>
@@ -116,6 +116,7 @@ function AddRequest() {
         <button className={Classes.button_request} type="submit" onClick={onSubmit}>
           <i className="far fa-check-square"></i>&nbsp; Register
         </button>
+        <img src='/images/maintainance_2.jpg' alt='request Background' className={Classes.imageClass3} />
       </form>
     </div>
     </div>

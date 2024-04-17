@@ -1,30 +1,33 @@
 import React from 'react';
 import MaintenanceRequests from './MaintenanceRequests';
-import OngoingMaintenance from './OngoingMaintenance';
+import StudentOngoingMaintenance from './StudentOngoingMaintenance';
+import StudentNotifications from './StudentNotifications'; // Import the StudentNotifications component
 import { Link, useLocation } from 'react-router-dom';
 
 function StudentPage() {
   const location = useLocation();
-  const Id = location.pathname.split('/').pop();
+  const userId = location.pathname.split('/').pop();
 
   // Log the userId to the console
-  console.log('User ID:', Id);
+  console.log('User ID:', userId);
 
   return (
     <div className='main-container'>
-          <div className="student-page-container">
-      <div className="left-section">
-        <MaintenanceRequests />
-        <Link to={`/add-request/${Id}`}>
-          <button>Add Request</button>
-        </Link>
-      </div>
-      <div className="right-section">
-        <OngoingMaintenance />
+      <div className="student-page-container">
+        <div className="left-section">
+          
+          <MaintenanceRequests />
+          <Link to={`/add-request/${userId}`}>
+            <button>Add Request</button>
+          </Link>
+        </div>
+        <div className="right-section">
+        <StudentNotifications userId={userId} /> 
+        <StudentOngoingMaintenance userId={userId} />
+          
+        </div>
       </div>
     </div>
-    </div>
-
   );
 }
 

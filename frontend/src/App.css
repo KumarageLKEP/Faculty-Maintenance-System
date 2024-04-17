@@ -81,6 +81,10 @@ button {
     
     line-height: normal;
     
+
+    font-weight: bold;
+    
+
 }
 
 
@@ -92,6 +96,8 @@ button {
   width: 550px;
   background-color: #e2d9d9; /* Light gray background */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow */
+
+
   font-family: Inter;
     
     font-style: normal;

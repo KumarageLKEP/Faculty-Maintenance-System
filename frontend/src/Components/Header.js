@@ -1,12 +1,15 @@
 import React from 'react'
 import classes from '../Components/header.module.css'
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 export default function Header() {
     return (
         <header className={classes.header}>
           <div className={classes.container}>
+
           <img src='/images/logo.jpeg' alt='login Background' className={classes.imageClass3} />
+
+
             <p className={classes.FMMS}>
               ENG FMMS
             </p>
