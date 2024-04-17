@@ -1,5 +1,6 @@
 .Details_container{
     flex: 1;
+
   border-radius: 35px;
   width: 500px;
   height: auto;
@@ -35,4 +36,5 @@
 
 .button2{
   margin-left: 100px;
+
 }

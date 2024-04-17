@@ -6,7 +6,10 @@ export default function Header() {
     return (
         <header className={classes.header}>
           <div className={classes.container}>
-          <img src='/images/logo.jpeg' alt='logo Background' className={classes.imageClass2} />
+
+          <img src='/images/logo.jpeg' alt='login Background' className={classes.imageClass3} />
+
+
             <p className={classes.FMMS}>
               ENG FMMS
             </p>

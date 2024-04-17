@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+
+
+
+
+
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+
 import '../App.css';
 import classes from '../Pages/maintainancedetails.module.css'
 
@@ -113,10 +119,11 @@ function MaintenanceRequestDetail() {
   const decodedImage = `data:image/jpeg;base64,${imageBase64}`;
 
   return (
-    <div>
+    <div className= {classes.Details_container}>
       <div>
         <div className={classes.Details_container}>
         <div className="row">
+
           <div className="col-lg-9 mt-2 mb-2">
             <h4 className={classes.request_text}>Maintenance Request Details</h4>
           </div>
@@ -136,12 +143,16 @@ function MaintenanceRequestDetail() {
               />
             </div>
           )}
+
+
           <p className={classes.container_1}>Priority: {maintenanceRequest.priority}</p>
           <p className={classes.container_1}> Status: {maintenanceRequest.status}</p>
           <button onClick={handleApprove} className={classes.button1}>Approve</button>
           <button onClick={handleReject} className={classes.button2}>Reject</button>
           </div>
+
         </div>
+      </div>
       </div>
     </div>
   );

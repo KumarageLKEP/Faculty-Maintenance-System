@@ -1,13 +1,22 @@
+
 /* maintainancerequests.module.css */
 
 /* Global styles */
 .body {
     background-color: aliceblue;
+
 }
 
 /* Component-specific styles */
 .Maintenance_container {
     color: #000;
+
+
+.Request_font{
+    font-weight: bolder;
+    margin-bottom: -100px;
+}
+
     font-family: Inter;
     font-size: 40px;
     font-style: normal;
@@ -16,9 +25,7 @@
     margin-top: -60px;
 }
 
-.Request_font {
-    /* Add any styles for the heading */
-}
+
 
 ul {
     list-style-type: none; /* Remove default bullet points */
@@ -31,3 +38,4 @@ li {
     font-weight: normal;
     /* Add any other styles for list items */
 }
+

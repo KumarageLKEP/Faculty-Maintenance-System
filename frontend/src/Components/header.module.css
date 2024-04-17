@@ -8,6 +8,7 @@ justify-content: space-between;
 align-items: center;
 background: var(--Base-White, #FFF);
 box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.10);
+
 }
 
 .container{
@@ -85,6 +86,11 @@ background: linear-gradient(225deg, #6675F7 0%, #57007B 100%);
     color: #FFF;
 }
 
+
+.imageClass3{
+    height: 60px;
+
 .imageClass2{
     width: 70px;
+
 }
