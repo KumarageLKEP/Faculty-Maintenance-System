@@ -32,32 +32,26 @@ function Login(){
     };
     
 
-      const handleSubmit = async (e) => {
-        e.preventDefault();
-    
-        try {
-          const response = await axios.get('http://localhost:8000/users'); 
-          if (response.data.success) {
-            const user = response.data.existingUsers.find(
-              (user) => user.regNo === regNo && user.password === password
-            );
-    
-            if (user) {
-              handleLogin(user);
-            } else {
-              console.error('Authentication failed');
-            }
-          } else {
-            console.error('Failed to fetch posts');
-          }
-        } catch (error) {
-          console.error('Error:', error);
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+  
+      try {
+        const response = await axios.post('http://localhost:8000/login', {
+          regNo,
+          password,
+        });
+  
+        if (response.data.success) {
+          // Authentication successful, handle login (e.g., store token)
+          handleLogin(response.data.user);
+        } else {
+          // Authentication failed, display error message
+          console.error('Authentication failed');
         }
-      };
-    
-      const handleCancel = () => {
-        navigate('/'); 
-      };
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    };
 
     
     return (
