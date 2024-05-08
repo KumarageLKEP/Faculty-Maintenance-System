@@ -154,7 +154,7 @@ function MaintenanceRequestDetail() {
         </div>
       </div>
       </div>
-    </div>
+    
   );
 }
 
