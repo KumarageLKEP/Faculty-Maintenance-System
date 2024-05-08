@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import '../App.css'; // Import the CSS file
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function AllRequests() {
   const [maintenanceRequests, setAllRequests] = useState([]);
@@ -27,29 +29,39 @@ function AllRequests() {
   };
 
   return (
-    <div className='main-container'>
-      <h2>Maintenance Requests</h2>
-      {error ? (
-        <p>Error: {error}</p>
-      ) : (
-        <ul>
-          {maintenanceRequests.map((request) => (
-            <li key={request._id}>
-              <div>
-                {request.description} - {request.place}
-                <button
-                  onClick={() => handleButtonClick(request._id)}
-                  className="button-style" // Apply the CSS class
-                >
-                  View Details
-                </button>
-              </div>
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
+    <table className="table table-dark table-striped">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Place</th>
+        </tr>
+      </thead>
+      <tbody>
+        {error ? (
+          <tr>
+            <td colSpan="2">Error: {error}</td>
+          </tr>
+        ) : (
+          <>
+            {maintenanceRequests.map((request) => (
+              <tr key={request._id}>
+                <td>{request.description}</td>
+                <td>{request.place}</td>
+                <td>
+                  <button
+                    onClick={() => handleButtonClick(request._id)}
+                    className="button-style"
+                  >
+                    View Details
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </>
+        )}
+      </tbody>
+    </table>
   );
-}
+}  
 
 export default AllRequests;

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { toast } from 'react-toastify';
-import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 import Classes from '../Pages/register.module.css';
 
 function Register() {
+
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -21,7 +22,6 @@ function Register() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
 
-    // Check if the input is the role input
     if (name === 'role') {
       setFormData({ ...formData, role: value });
     } else {
@@ -30,7 +30,6 @@ function Register() {
   };
 
   useEffect(() => {
-    // Auto-assign role logic remains the same
     if (formData.regNo.startsWith('EG')) {
       setFormData({ ...formData, role: 'Student' });
     } else if (formData.regNo.startsWith('AC')) {
@@ -79,74 +78,124 @@ function Register() {
         }
       })
       .catch((error) => {
-        // Handle errors
         console.error(error);
       });
   };
 
   return (
-    <div className={Classes.main_container}>
-          <div className={Classes.auth_form_container}>
-      <h2>Sign Up now</h2>
-      <form className="register-form">
-        <label htmlFor="name" className={Classes.text_signup}>Full name</label>
-        <input value={formData.fullName} className={Classes.con} name="fullName" onChange={handleInputChange} placeholder="Full Name" type="text"/>
-
-        <label htmlFor="email" className={Classes.text_signup}>Email</label>
-        <input value={formData.email} className={Classes.con} onChange={handleInputChange} type="text" placeholder="Email"  name="email" />
-
-        <label htmlFor="regNo"className={Classes.text_signup}>Register No.</label>
-        <input value={formData.regNo} className={Classes.con} onChange={handleInputChange} type="text" placeholder="Register No." name="regNo" />
-
-        <label htmlFor="role"className={Classes.text_signup}>Role</label>
-        <input
-          value={formData.role}
-          className={Classes.con}
-          onChange={handleInputChange}
-          placeholder="Role"
-          type="text"
-          id="role"
-          name="role"
-        />
-
-        <label htmlFor="department"className={Classes.text_signup}>Department</label>
-        <select value={formData.department} onChange={handleInputChange}  className={Classes.con} name="department">
-          <option value="" className={Classes.department} >Select Department</option>
-          <option value="Electrical and Information Department" className={Classes.department}>Electrical and Information Department</option>
-          <option value="Civil and Environmental Department" className={Classes.department}> Civil and Environmental Department</option>
-          <option value="Mechanical and Manufacturing Department" className={Classes.department}>Mechanical and Manufacturing Department</option>
-          <option value="Marine and Naval Architecture" className={Classes.department}>Marine and Naval Architecture</option>
-          <option value="Interdisciplinary Studies" className={Classes.department}>Interdisciplinary Studies</option>
-          <option value="Maintenance Division" className={Classes.department}>Maintenance Division</option>
-          <option value="Admin Sector"className={Classes.department}>Admin Sector</option>
-        </select>
-
-        <label htmlFor="contactNumber" className={Classes.text_signup}>Contact No.</label>
-        <input value={formData.contactNumber} className={Classes.con} onChange={handleInputChange} type="text" placeholder="07********" name="contactNumber" />
-
-        <label htmlFor="password" className={Classes.text_signup}>Password</label>
-        <input value={formData.password}className={Classes.con} onChange={handleInputChange} type="text" placeholder="********"  name="password" />
-
-        <label htmlFor="confirmPassword" className={Classes.text_signup}>Confirm Password</label>
-        <input value={formData.confirmPassword}className={Classes.con} onChange={handleInputChange} type="text" placeholder="********"  name="confirmPassword" />
-
-        <button
-            
-            className={Classes.btn_success}
-            type="submit"
-        
-            onClick={onSubmit}
-          >
-           <p className={Classes.text_signupnow}>Sign Up</p>
-          </button>
-
-      </form>
-
-
-    </div>
-    <img src='/images/login_new.jpg' alt='login Background' className={Classes.imageClass2} />
-    </div>
-
+    <body>
+    <section className="vh-100">
+      <div className="container">
+        <div className="row justify-content-center align-items-center h-100">
+          <div className="col-md-6">
+            <img
+              src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+              className="img-fluid"
+              alt="Sample image"
+            />
+          </div>
+          <div className="col-md-6">
+            <form onSubmit={onSubmit}>
+              <div className="text-center mb-4">
+                <h2>Sign Up</h2>
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.fullName}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="fullName"
+                  placeholder="Enter full name"
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="email"
+                  value={formData.email}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="email"
+                  placeholder="Enter email"
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.regNo}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="regNo"
+                  placeholder="Enter registration number"
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.role}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="role"
+                  placeholder="Enter role"
+                  disabled
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <select
+                  className="form-control"
+                  value={formData.department}
+                  onChange={handleInputChange}
+                  name="department"
+                >
+                  <option value="">Select department</option>
+                  <option value="Electrical and Information Department">Electrical and Information Department</option>
+                  <option value="Civil and Environmental Department">Civil and Environmental Department</option>
+                  <option value="Mechanical and Manufacturing Department">Mechanical and Manufacturing Department</option>
+                  <option value="Marine and Naval Architecture">Marine and Naval Architecture</option>
+                  <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
+                  <option value="Maintenance Division">Maintenance Division</option>
+                  <option value="Admin Sector">Admin Sector</option>
+                </select>
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.contactNumber}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="contactNumber"
+                  placeholder="Enter contact number"
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="password"
+                  value={formData.password}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="password"
+                  placeholder="Enter password"
+                />
+              </div>
+              <div className="form-outline mb-4">
+                <input
+                  type="password"
+                  value={formData.confirmPassword}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="confirmPassword"
+                  placeholder="Confirm password"
+                />
+              </div>
+              <div className="text-center">
+              <button type="button" class="btn btn-secondary btn-lg" onClick={() => { window.location.href = '/' }}>Sign Up</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+    </body>
   );
 }
 

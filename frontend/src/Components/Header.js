@@ -1,19 +1,22 @@
-import React from 'react'
-import classes from '../Components/header.module.css'
-import { Link } from 'react-router-dom';
+import React from 'react';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
+import classes from './header.module.css'; // Corrected CSS module file name
+
 
 export default function Header() {
-    return (
-        <header className={classes.header}>
+  return (
+    <nav className="navbar navbar-light bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand" href="/">
+          <img src="/images/logo.jpeg" alt="ENG FMMS Logo" width="30" height="24" className="d-inline-block align-text-top" />
+          <span style={{ marginLeft: '20px', fontSize: '25px' , fontWeight:'bolder' }} className="FMMS">ENG FMMS</span>
+        </a>
+        <div className={classes.header}>
           <div className={classes.container}>
-
-          <img src='/images/logo.jpeg' alt='login Background' className={classes.imageClass3} />
-
-
+            <img src='/images/logo.jpeg' alt='login Background' className={classes.imageClass3} />
             <p className={classes.FMMS}>
               ENG FMMS
             </p>
-    
             <Link to="/Home" className={classes.Home}>
               HOME
             </Link>
@@ -26,15 +29,9 @@ export default function Header() {
             <Link to="/" className={classes.Dashboard}>
               LOGIN
             </Link>
-            
-    
-           
           </div>
-
-          
-        </header>
-    
-    
-        
-      );
-    }
+        </div>
+      </div>
+    </nav>
+  );
+}

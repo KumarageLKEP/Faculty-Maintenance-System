@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Classes from '../Pages/maintainancerequests.moule.css'
+import classes from '../Pages/maintainancerequests.moule.css'; // Corrected import path
 
 function MaintenanceRequests() {
   const { Id } = useParams();
@@ -23,19 +23,26 @@ function MaintenanceRequests() {
   }, [submittedBy]);
 
   return (
-    
-    <div className={Classes.Maintenance_container}>
-      <h2 className= {Classes.Request_font}>Maintenance Requests</h2>
+    <div className={classes.tableContainer}> {/* Corrected className */}
       {error ? (
         <p>Error: {error}</p>
       ) : (
-        <ul>
-          {maintenanceRequests.map((request) => (
-            <li  key={request._id}>
-              {request.place} - {request.issueType}
-            </li>
-          ))}
-        </ul>
+        <table className={`${classes.customTable} table table-dark table-striped`}> {/* Corrected interpolation */}
+          <thead>
+            <tr>
+              <th>Place</th>
+              <th>Issue Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            {maintenanceRequests.map((request) => (
+              <tr key={request._id}>
+                <td>{request.place}</td>
+                <td>{request.issueType}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       )}
     </div>
   );

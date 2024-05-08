@@ -1,86 +1,136 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
-import classes from '../Pages/login.module.css';
 
-function Login(){
+function Login() {
+  const navigate = useNavigate();
+  const [regNo, setRegNo] = useState('');
+  const [password, setPassword] = useState('');
 
-    const navigate = useNavigate();
-    const [regNo, setRegNo] = useState('');
-    const [password, setPassword] = useState('');
+  const handleLogin = async (user) => {
+    const { role, _id: id } = user;
 
-    const handleLogin = async (user) => {
-      const { role, _id: id } = user; // Use _id for MongoDB document ID
-    
-      switch (role) {
-        case 'Student':
-          navigate(`/studentPage/${id}`);
-          break;
-        case 'Admin':
-          navigate(`/adminPage/${id}`);
-          break;
-        case 'Academic Staff':
-          navigate(`/academicStaffPage/${id}`);
-          break;
-        case 'Maintenance Division':
-          navigate(`/maintenanceDivisionPage/${id}`);
-          break;
-        default:
-          console.error('Unknown role:', role);
-          break;
+    switch (role) {
+      case 'Student':
+        navigate(`/studentPage/${id}`); // <- Add backticks and fix the string interpolation
+        break;
+      case 'Admin':
+        navigate(`/adminPage/${id}`); // <- Add backticks and fix the string interpolation
+        break;
+      case 'Academic Staff':
+        navigate(`/academicStaffPage/${id}`); // <- Add backticks and fix the string interpolation
+        break;
+      case 'Maintenance Division':
+        navigate(`/maintenanceDivisionPage/${id}`); // <- Add backticks and fix the string interpolation
+        break;
+      default:
+        console.error('Unknown role:', role);
+        break;
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:8000/login', {
+        regNo,
+        password,
+      });
+
+      if (response.data.success) {
+        handleLogin(response.data.user);
+      } else {
+        console.error('Authentication failed');
       }
-    };
-    
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
 
-    const handleSubmit = async (e) => {
-      e.preventDefault();
-  
-      try {
-        const response = await axios.post('http://localhost:8000/login', {
-          regNo,
-          password,
-        });
-  
-        if (response.data.success) {
-          // Authentication successful, handle login (e.g., store token)
-          handleLogin(response.data.user);
-        } else {
-          // Authentication failed, display error message
-          console.error('Authentication failed');
-        }
-      } catch (error) {
-        console.error('Error:', error);
-      }
-    };
+  const handleCancel = () => {
+    navigate('/');
+  };
 
-    
-    return (
-      <div className={classes.main}>
-              
-        <div >
-           
-            <h2 className={classes.aut_form_container}>Login now</h2>
-            <form className="login-form" onSubmit={handleSubmit}>
-                <label htmlFor="register"className={classes.text_1} >User Name</label>
-                <input value={regNo} className={classes.container_1} onChange={(e) => setRegNo(e.target.value)} placeholder ="Enter your username" type="regNo" id="regNo" name="regNo" />
-                <label htmlFor="password"className={classes.text_2}>password</label>
-                <input value={password} className={classes.container_2} onChange={(e) => setPassword(e.target.value)} type="password" placeholder="********" id="password" name="password" />
-                <button type="submit" className={classes.button} > <p className={classes.login_text}>Login</p></button>
-            </form>
-            
-            <button className="link-btn">
-  <span className={classes.text_3}>Not registered yet? </span>
-  <a href="/register" className={classes.text_4}>Create an account SignUp</a>
+  return (
+    <body> {/* This should be replaced with a valid JSX element */}
+      <section className="vh-100">
+        <div className="container-fluid h-custom">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                className="img-fluid"
+                alt="Sample image"
+              />
+            </div>
+            <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <form onSubmit={handleSubmit}>
+                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
 
-</button>
+                <div className="divider d-flex align-items-center my-4">
+                  <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
+                </div>
 
+                <div data-mdb-input-init className="form-outline mb-4">
+                  <input
+                    type="register"
+                    id="form3Example3"
+                    className="form-control form-control-lg"
+                    onChange={(e) => setRegNo(e.target.value)}
+                    placeholder="Enter a valid user name"
+                  />
+                  <label className="form-label" htmlFor="form3Example3">
+                    User Name
+                  </label>
+                </div>
 
+                <div data-mdb-input-init className="form-outline mb-3">
+                  <input
+                    type="password"
+                    id="form3Example4"
+                    className="form-control form-control-lg"
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                  />
+                  <label className="form-label" htmlFor="form3Example4">
+                    Password
+                  </label>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="form-check mb-0">
+                    <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                    <label className="form-check-label" htmlFor="form2Example3">
+                      Remember me
+                    </label>
+                  </div>
+                  <a href="#!" className="text-body">
+                    Forgot password?
+                  </a>
+                </div>
+
+                <div className="text-center text-lg-start mt-4 pt-2">
+                  <button
+                    type="submit"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    className="btn btn-primary btn-lg"
+                    style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+                  >
+                    Login
+                  </button>
+                  <p className="small fw-bold mt-2 pt-1 mb-0">
+                    Don't have an account? <a href="/register" className="link-danger">Register</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
-        <img src='/images/login_new.jpg' alt='login Background' className={classes.imageClass1} />
-      </div>
-      
-
-    );
+      </section>
+    </body>
+  );
 }
 
 export default Login;

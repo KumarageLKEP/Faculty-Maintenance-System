@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
-
 function CompletedMaintenance() {
   const [completedMaintenance, setCompletedMaintenance] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -25,18 +24,26 @@ function CompletedMaintenance() {
     fetchCompletedMaintenance();
   }, []);
 
-  
-
   return (
-    <div className='main-container'>
-      <h2>Completed Maintenance</h2>
-      <ul>
-        {completedMaintenance.map((task, index) => (
-          <li key={index}>
-            <div>{task.description}</div>
-          </li>
-        ))}
-      </ul>
+    <div className="main-container">
+      <div className="table-responsive">
+        <table className="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Completed At</th>
+            </tr>
+          </thead>
+          <tbody>
+            {completedMaintenance.map((task, index) => (
+              <tr key={index}>
+                <td>{task.description}</td>
+                <td>{task.completedAt}</td> {/* Assuming completedAt is a property in your task object */}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

@@ -23,15 +23,25 @@ function StudentOngoingMaintenance({ userId }) {
 
   return (
     <div className='main-container'>
-      <h2>Your Ongoing Maintenance</h2>
-      <ul>
-        {ongoingMaintenance.map((task, index) => (
-          <li key={index}>
-            <div>{task.description}</div>
-            <div>Status: {task.status}</div>
-          </li>
-        ))}
-      </ul>
+
+      <div className="table-responsive">
+        <table className="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ongoingMaintenance.map((task, index) => (
+              <tr key={index}>
+                <td>{task.description}</td>
+                <td>{task.status}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

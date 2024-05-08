@@ -28,44 +28,53 @@ function OngoingMaintenance() {
   const handleProgressChange = async (id, index, newProgress) => {
     const updatedMaintenance = [...ongoingMaintenance];
     updatedMaintenance[index].progress = newProgress;
-  
+
     if (newProgress === 100) {
       updatedMaintenance[index].status = 'Completed';
       try {
-        await axios.post(`http://localhost:8000/maintenanceRequest/${id}/completed`, {
+        await axios.post(`http://localhost:8000/maintenanceRequest/${id}/completed`, { // Corrected URL with backticks and quotes
           status: 'Completed'
         });
-  
+
         // Send a notification when the task is completed
         await axios.post('http://localhost:8000/sendNotification', {
           userId: updatedMaintenance[index].submittedBy,
-          message: `Your maintenance request for "${updatedMaintenance[index].description}" has been completed.`
+          message: `Your maintenance request for "${updatedMaintenance[index].description}" has been completed.` // Enclosed message in backticks
         });
-  
+
       } catch (error) {
         console.error('Error updating maintenance request status:', error);
       }
     }
-  
+
     setOngoingMaintenance(updatedMaintenance);
   };
-  
 
   return (
-    <div className='main-container'>
-      <h2>Ongoing Maintenance</h2>
-      <ul>
-        {ongoingMaintenance.map((task, index) => (
-          <li key={index}>
-            <div>{task.description}</div>
-            <div>Status: {task.status}</div>
-            <StatusBar
-              progress={task.progress}
-              onProgressChange={(newProgress) => handleProgressChange(task._id, index, newProgress)} // Pass the ID to the handleProgressChange function
-            />
-          </li>
-        ))}
-      </ul>
+    <div className="table-responsive">
+      <table className="table table-dark table-striped">
+        <thead>
+          <tr>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Progress</th>
+          </tr>
+        </thead>
+        <tbody>
+          {ongoingMaintenance.map((task, index) => (
+            <tr key={index}>
+              <td>{task.description}</td>
+              <td>{task.status}</td>
+              <td>
+                <StatusBar
+                  progress={task.progress}
+                  onProgressChange={(newProgress) => handleProgressChange(task._id, index, newProgress)}
+                />
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 }

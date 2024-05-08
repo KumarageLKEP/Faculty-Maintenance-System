@@ -1,33 +1,12 @@
-
-.main-container {
-  text-align: center;
-  display: flex;
-  min-height: 100vh;
- 
-  align-items: center;
-  justify-content: center;
-  
-  
+body {
+  background-color: #807d7d; 
+  margin: 0; /* Remove default body margin */
+  padding: 0; /* Remove default body padding */
 }
-
-.MaintenanceRequestDetail .table-container {
-  color: black;
-  background-color:#f0f0f0;
-}
-
 
 .auth-form-container, .login-form, .register-form {
   display: flex;
   flex-direction: column;
-}
-
-@media screen and (min-width: 600px) {
-  .auth-form-container {
-    padding: 5rem;
-    border: 1px solid white;
-    border-radius: 10px;
-    margin: 0.5rem;
-  }
 }
 
 label {
@@ -43,15 +22,18 @@ input {
 }
 
 button {
+  background-color: #5584ff;
+  color: white;
+  padding: 15px 30px;
   border: none;
-  background-color: rgb(196, 193, 193);
-  padding: 20px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
-  color: black;
-  font-weight: bold;
-  font-family: Inter;
-  font-size: 17px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #335cb4;
 }
 
 .link-btn {
@@ -59,7 +41,6 @@ button {
   color: white;
   text-decoration: underline;
 }
-
 
 .student-page-container {
   display: flex;
@@ -75,19 +56,11 @@ button {
   background-color: #e2d9d9; 
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
   color: #000;
-    font-family: Inter;
-    
-    font-style: normal;
-    
-    line-height: normal;
-    
-
-    font-weight: bold;
-    
-
+  font-family: Inter;
+  font-style: normal;
+  line-height: normal;
+  font-weight: bold;
 }
-
-
 
 .right-section {
   flex: 1;
@@ -96,14 +69,10 @@ button {
   width: 550px;
   background-color: #e2d9d9; /* Light gray background */
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Soft shadow */
-
-
   font-family: Inter;
-    
-    font-style: normal;
-    font-weight: bold;
-    line-height: normal;
-  
+  font-style: normal;
+  font-weight: bold;
+  line-height: normal;
 }
 
 .button-style {
@@ -115,14 +84,12 @@ button {
   margin-left: 10px;
 }
 
-
 .table-container {
   margin: 70px 10px 0 0px;
   background-color: blanchedalmond; 
   align-items: center;
   position: relative;
-  overflow:visible;
-
+  overflow: visible;
 }
 
-
+/* Add your remaining CSS styles below */
