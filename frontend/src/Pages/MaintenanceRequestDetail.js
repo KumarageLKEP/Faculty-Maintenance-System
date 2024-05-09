@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
 import '../App.css';
-import classes from '../Pages/maintainancedetails.module.css';
+import '../Pages/maintainancedetails.module.css';
 
 function MaintenanceRequestDetail() {
   const navigate = useNavigate();
@@ -99,44 +99,72 @@ function MaintenanceRequestDetail() {
   const decodedImage = `data:image/jpeg;base64,${imageBase64}`;
 
   return (
-    <div className={classes.Details_container}>
-      <div className={classes.Details_container}>
-        <div className="row">
-          <div className="col-lg-9 mt-2 mb-2">
-            <h4 className={classes.request_text}>Maintenance Request Details</h4>
-          </div>
-        </div>
-        <div className="col-md-10 col-sm-11 display-table-cell v-align">
-          <div className="user-dashboard">
-            <div className="curved-box">
-              <h3>Maintenance Request Details</h3>
-              
-              <table className="table table-sm">
+    <div className="container-fluid">
+      <div className="d-flex justify-content-between align-items-center py-3">
+        <h2 className="h5 mb-0"><a href="#" className="text-muted"></a> Request_ID</h2>
+      </div>
+      <div className="row">
+        <div className="col-lg-8">
+          <div className="card mb-4">
+            <div className="card-body">
+              <div className="mb-3 d-flex justify-content-between">
+                <div>
+                  <span className="me-3">Maintenance Request Details</span>
+                </div>
+              </div>
+              <table className="table table-borderless">
                 <tbody>
                   <tr>
-                    <td>Place</td>
-                    <td>{maintenanceRequest.place}</td>
+                    <td>
+                      <div className="d-flex mb-2">
+                        <div className="flex-lg-grow-1 ms-3">
+                          <h6 className="small mb-0"> Place</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-end">{maintenanceRequest.place}</td>
                   </tr>
                   <tr>
-                    <td>Issue Type</td>
-                    <td>{maintenanceRequest.issueType}</td>
+                    <td>
+                      <div className="d-flex mb-2">
+                        <div className="flex-lg-grow-1 ms-3">
+                          <h6 className="small mb-0"> Issue Type</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-end">{maintenanceRequest.issueType}</td>
+                  </tr>
+                 
+                  <tr>
+                    <td>
+                      <div className="d-flex mb-2">
+                        <div className="flex-lg-grow-1 ms-3">
+                          <h6 className="small mb-0"> Priority</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-end">{maintenanceRequest.priority}</td>
                   </tr>
                   <tr>
-                    <td>Description</td>
-                    <td>{maintenanceRequest.description}</td>
-                  </tr>
-                  <tr>
-                    <td>Priority</td>
-                    <td>{maintenanceRequest.priority}</td>
-                  </tr>
-                  <tr>
-                    <td>Status</td>
-                    <td>{maintenanceRequest.status}</td>
+                    <td>
+                      <div className="d-flex mb-2">
+                        <div className="flex-lg-grow-1 ms-3">
+                          <h6 className="small mb-0"> Status</h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="text-end">{maintenanceRequest.status}</td>
                   </tr>
                   {maintenanceRequest.image && (
                     <tr>
-                      <td>Image</td>
                       <td>
+                        <div className="d-flex mb-2">
+                          <div className="flex-lg-grow-1 ms-3">
+                            <h6 className="small mb-0"> Image</h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td  className="text-end">
                         <img 
                           src={decodedImage}
                           alt="Maintenance Request"
@@ -147,11 +175,20 @@ function MaintenanceRequestDetail() {
                   )}
                 </tbody>
               </table>
-              <button onClick={handleApprove} type="button" className="btn btn-secondary btn-sm">Approve</button>
-              <button onClick={handleReject} type="button" className="btn btn-secondary btn-sm">Reject</button>
-              {error && <p className="text-danger mt-3">{error}</p>}
             </div>
           </div>
+        </div>
+        <div className="col-lg-4">
+          <div className="card mb-4">
+            <div className="card-body">
+              <h3 className="h6">Description</h3>
+              <p>{maintenanceRequest.description}</p>
+            </div>
+          </div>
+
+          <button onClick={handleApprove} type="button" className="btn btn-secondary btn-sm">Approve</button>
+          <button onClick={handleReject} type="button" className="btn btn-secondary btn-sm">Reject</button>
+          {error && <p className="text-danger mt-3">{error}</p>}
         </div>
       </div>
     </div>

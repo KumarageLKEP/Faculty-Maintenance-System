@@ -8,12 +8,14 @@ import StudentPage from './Pages/StudentPage';
 import MaintenanceDivisionPage from './Pages/MaintenanceDivisionPage';
 import AddRequest from './Pages/AddRequest';
 import MaintenanceRequestDetail from './Pages/MaintenanceRequestDetail';
+import Home from './Pages/Home_Page/Home';
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/home" element={<Home />} />
       <Route path="/adminPage/:Id" element={<AdminPage />} />
       <Route path="/academicStaffPage/:Id" element={<AcademicStaffPage />} />
       <Route path="/studentPage/:Id" element={<StudentPage />} />

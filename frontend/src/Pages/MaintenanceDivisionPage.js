@@ -7,25 +7,68 @@ import { useEffect } from 'react';
 
 function StudentPage() {
   const [activeTab, setActiveTab] = useState('allmaintenanceRequests');
+  const toggleSidebar = () => {
+    const sidebar = document.getElementById('sidebar');
+    if (sidebar.classList.contains('active')) {
+      sidebar.classList.remove('active');
+    } else {
+      sidebar.classList.add('active');
+    }
+  };
 
   return (
-    <div className="container-fluid display-table">
-      <div className="row display-table-row">
-        <div className="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
-          <div className="logo">
-            <a href="home.html"></a>
-          </div>
-          <div className="navi">
-            <ul>
-              <li className="active"><a href="#"><i className="fa fa-home" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Dashboard</span></a></li>
-              <li><a href="#"><i className="fa fa-tasks" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Home</span></a></li>
-              <li><a href="#"><i className="fa fa-bar-chart" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Calendar</span></a></li>
-              <li><a href="#"><i className="fa fa-user" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Calendar</span></a></li>
-              <li><a href="#"><i className="fa fa-calendar" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Contact Us</span></a></li>
-              <li><a href="/"><i className="fa fa-cog" aria-hidden="true"></i><span className="hidden-xs hidden-sm">Log out</span></a></li>
-            </ul>
-          </div>
+    
+    <div className="wrapper">
+      <nav id="sidebar">
+        <div className="sidebar-header">
+            <h3>Dashboard</h3>
         </div>
+
+        <ul className="list-unstyled components">
+            
+            <li>
+                <a   >Home</a>
+                
+            </li>
+            <li >
+                <a >Calander</a>
+            </li>
+           
+            <li >
+                <a >Contact</a>
+            </li>
+            <li > 
+                <a >Settings</a>
+            </li>
+        </ul>
+
+      </nav>
+
+      <div id="content">
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+          <div className="container-fluid">
+            <button
+              type="button"
+              id="sidebarCollapse"
+              className="btn btn-info"
+              onClick={toggleSidebar}
+            >
+              <i className="fas fa-align-left"></i>
+              <i class="bi bi-caret-left-square-fill"></i>
+            </button>
+            <button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+              <i className="fas fa-align-justify"></i>
+            </button>
+
+            <div className="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul className="nav navbar-nav ml-auto">
+                <li className="nav-item active">
+                  <a className="nav-link" href="#">Welcome to Ma Dashboard</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+          </nav>
         <div className="col-md-10 col-sm-11 display-table-cell v-align">
           <div className="user-dashboard">
             <ul className="nav nav-tabs">

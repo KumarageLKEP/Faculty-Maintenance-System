@@ -11,12 +11,10 @@ export default function Header() {
           <img src="/images/logo.jpeg" alt="ENG FMMS Logo" width="30" height="24" className="d-inline-block align-text-top" />
           <span style={{ marginLeft: '20px', fontSize: '25px' , fontWeight:'bolder' }} className="FMMS">ENG FMMS</span>
         </a>
+      
         <div className={classes.header}>
           <div className={classes.container}>
-            <img src='/images/logo.jpeg' alt='login Background' className={classes.imageClass3} />
-            <p className={classes.FMMS}>
-              ENG FMMS
-            </p>
+            
             <Link to="/Home" className={classes.Home}>
               HOME
             </Link>

@@ -69,25 +69,51 @@ function AddRequest() {
   };
 
   return (
-    <div className={Classes.auth_form_container}>
-      <h2 className={Classes.auth_form_container_text}>Maintenance Request Form</h2>
-      <div className={Classes.main_maincontainer}>
-        <div className={Classes.mini_container}>
-          <form className="register-form" encType="multipart/form-data">
-            <label htmlFor="place" className={Classes.request_text}>Place</label>
-            <select value={formData.place} onChange={handleInputChange} className={Classes.request_container} name="place">
-              <option value="">Select Place</option>
-              <option value="Electrical and Information Department">Electrical and Information Department</option>
-              <option value="Civil and Environmental Department">Civil and Environmental Department</option>
-              <option value="Mechanical and Manufacturing Department">Mechanical and Manufacturing Department</option>
-              <option value="Marine and Naval Architecture">Marine and Naval Architecture</option>
-              <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
-              <option value="Maintenance Division">Maintenance Division</option>
-              <option value="Admin Sector">Admin Sector</option>
-            </select>
+    
+    <body>
+    <section className="vh-100">
+        <div className="container-fluid h-custom">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                className="img-fluid"
+                alt="Sample image"
+              />
+              </div>
+              <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <form >
+                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
 
-            <label htmlFor="issueType" className={Classes.request_text}>Issue Type</label>
-            <select value={formData.issueType} onChange={handleInputChange} className={Classes.request_container} name="issueType">
+                <div className="divider d-flex align-items-center my-4">
+                  <p className="text-center fw-bold mx-3 mb-0">Add your Request</p>
+                </div>
+          <div className="form-outline mb-4">
+          <select
+                  className="form-control"
+                  value={formData.place}
+                  onChange={handleInputChange}
+                  name="place"
+                  placeholder="Enter Place"
+                >
+                  <option value="">Select department</option>
+                  <option value="Electrical and Information Department">Electrical and Information Department</option>
+                  <option value="Civil and Environmental Department">Civil and Environmental Department</option>
+                  <option value="Mechanical and Manufacturing Department">Mechanical and Manufacturing Department</option>
+                  <option value="Marine and Naval Architecture">Marine and Naval Architecture</option>
+                  <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
+                  <option value="Maintenance Division">Maintenance Division</option>
+                  <option value="Admin Sector">Admin Sector</option>
+                </select>
+              </div>
+              <div className="form-outline mb-4">
+              <select
+                  className="form-control"
+                  value={formData.issueType}
+                  onChange={handleInputChange}
+                  name="issueType"
+                  placeholder="Enter IssueType"
+                >
               <option value="">Select Issue Type</option>
               <option value="Electrical">Electrical</option>
               <option value="Plumbing">Plumbing</option>
@@ -98,31 +124,51 @@ function AddRequest() {
               <option value="IT and Technology">IT and Technology</option>
               <option value="Grounds Maintenance">Grounds Maintenance</option>
               <option value="Other">Other</option>
-            </select>
 
-            <label htmlFor="priority" className={Classes.request_text}>Priority</label>
-            <select value={formData.priority} onChange={handleInputChange} className={Classes.request_container} name="priority">
+            </select>
+            </div>
+            <div className="form-outline mb-4">
+            <select
+                  className="form-control"
+                  value={formData.priority}
+                  onChange={handleInputChange}
+                  name="priority"
+                  placeholder="Enter Priority"
+                >
               <option value="">Select Priority</option>
               <option value="High">High</option>
               <option value="Low">Low</option>
               <option value="Medium">Medium</option>
             </select>
+            </div>
 
-            <label htmlFor="image" className={Classes.request_text}> Image</label>
-            <input type="file" accept="image/*" onChange={handleImageChange} className={Classes.request_container} name="image" />
+            <div className="form-outline mb-4">
+            <input type="file" accept="image/*" onChange={handleImageChange}  name="image" />
+            </div>
 
-            <label htmlFor="description" className={Classes.request_text}>Description</label>
-            <input value={formData.description} onChange={handleInputChange} className={Classes.request_container} type="text" name="description" />
+            <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.description}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="description"
+                  placeholder="Enter description"
+                />
 
             <button className={Classes.button_request} type="submit" onClick={onSubmit}>
-              <i className="far fa-check-square"></i>&nbsp; Register
+              <i className="far fa-check-square"></i>&nbsp; submit
             </button>
-            <img src='/images/maintainance_2.jpg' alt='request Background' className={Classes.imageClass3} />
-          </form>
+           
+        
         </div>
+        </form>
+        </div> 
       </div>
-      <img src='/images/maintainance_2.jpg' alt='login Background' className={Classes.imageClass2} />
-    </div>
+      </div>
+      </section>
+    </body>
+    
   );
 }
 
