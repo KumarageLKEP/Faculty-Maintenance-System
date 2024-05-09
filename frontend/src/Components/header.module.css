@@ -1,5 +1,6 @@
 .header {
     display: flex;
+    position: relative;
     width: 100%;
     margin: 0;
     padding: 10px 25px;
@@ -7,9 +8,9 @@
     align-items: center;
     background: var(--Base-White, #FFF);
     box-shadow: 0px 4px 40px 0px rgba(0, 0, 0, 0.10);
-}
-
-.container {
+  }
+  
+  .container {
     display: flex;
     width: 900px;
     padding: 10px 0px;
@@ -17,9 +18,9 @@
     align-items: center;
     flex-shrink: 0;
     margin-left: 200px; /* Adjusted margin */
-}
-
-.FMMS {
+  }
+  
+  .FMMS {
     display: flex;
     width: 65px;
     height: 52px;
@@ -35,26 +36,26 @@
     line-height: normal;
     margin-right: 20px;
     text-transform: uppercase;
-}
-
-.Home,
-.About_Us,
-.Dashboard {
+  }
+  
+  .Home,
+  .About_Us,
+  .Dashboard {
     color: var(--Gray-gray-700, #4A5568);
     font-family: Inter;
     font-size: 16px;
     font-style: normal;
     font-weight: 500;
     line-height: 25px;
-}
-
-.About_Us {
+  }
+  
+  .About_Us {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-}
-
-.button_login {
+  }
+  
+  .button_login {
     width: 110px;
     height: 45px;
     display: flex;
@@ -64,22 +65,57 @@
     gap: 10px;
     border-radius: 5px;
     background: linear-gradient(225deg, #6675F7 0%, #57007B 100%);
-}
-
-.login_text_2 {
+  }
+  
+  .login_text_2 {
     color: #FFF;
-}
-
-.imageClass3 {
+  }
+  
+  .imageClass3 {
     height: 60px;
-}
-
-.imageClass2 {
+  }
+  
+  .imageClass2 {
     width: 70px;
-}
-
-.cd__main {
+  }
+  
+  .cd__main {
     display: block !important;
     background: linear-gradient(to right, #00b09b, #96c93d) !important;
     min-height: 720px;
-}
+  }
+  
+  .dropdown {
+    position: absolute;
+    top: calc(100% + 10px); /* Position the dropdown below the profile icon */
+    right: -20; /* Align the dropdown to the right */
+    background-color: white; /* Set the background color */
+    border: 1px solid #ccc; /* Add a border for better visibility */
+    border-radius: 4px; /* Add some border radius for rounded corners */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Add a shadow for depth */
+    z-index: 1000; /* Ensure the dropdown is above other content */
+    display: none; /* Initially hide the dropdown */
+  }
+  
+  .currentUser .dropdown {
+    display: block; /* Show the dropdown when the icon is clicked */
+  }
+
+  .currentUser {
+    display: flex;
+    align-items: center; /* Align items vertically */
+  }
+  
+  .profileIcon {
+    cursor: pointer;
+    margin-right: 10px; /* Add spacing between icon and name */
+  }
+  
+  .userName {
+    font-weight: bold;
+  }
+
+
+  
+  
+  
