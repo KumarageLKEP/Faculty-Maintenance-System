@@ -1,27 +1,29 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Login() {
   const navigate = useNavigate();
   const [regNo, setRegNo] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (user) => {
+  const handleLogin = (user) => {
     const { role, _id: id } = user;
 
     switch (role) {
       case 'Student':
-        navigate(`/studentPage/${id}`); // <- Add backticks and fix the string interpolation
+        navigate(`/studentPage/${id}`);
         break;
       case 'Admin':
-        navigate(`/adminPage/${id}`); // <- Add backticks and fix the string interpolation
+        navigate(`/adminPage/${id}`);
         break;
       case 'Academic Staff':
-        navigate(`/academicStaffPage/${id}`); // <- Add backticks and fix the string interpolation
+        navigate(`/academicStaffPage/${id}`);
         break;
       case 'Maintenance Division':
-        navigate(`/maintenanceDivisionPage/${id}`); // <- Add backticks and fix the string interpolation
+        navigate(`/maintenanceDivisionPage/${id}`);
         break;
       default:
         console.error('Unknown role:', role);
@@ -40,17 +42,20 @@ function Login() {
 
       if (response.data.success) {
         handleLogin(response.data.user);
+        toast.success('Login successful!');
       } else {
-        console.error('Authentication failed');
+        toast.error('Authentication failed');
       }
     } catch (error) {
       console.error('Error:', error);
+      toast.error('Error occurred during login');
     }
   };
 
   const handleCancel = () => {
     navigate('/');
   };
+
 
   return (
     <body> {/* This should be replaced with a valid JSX element */}
