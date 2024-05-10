@@ -1,62 +1,76 @@
 import React from 'react';
+import 'remixicon/fonts/remixicon.css';
 
 const Footer = () => {
   return (
-    <footer className="text-center text-lg-start text-white" style={{backgroundColor: '#929fba', marginTop: 'auto'}}>
-      <div className="container p-4 pb-0">
-        <section>
-          <div className="row">
-            <div className="col-md-6 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">
-                Faculty of Engineering , University of Ruhuna
-              </h6>
-              <p>
-              The Faculty of Engineering of University 
-              of Ruhuna was established on 1st July 1999 at Hapugala, Galle.  Admission to the Faculty of Engineering, University of Ruhuna, is subject to the University Grants Commission 
-              policy on university admissions.
-              </p>
+    <footer id="footer" className="footer">
+     <div className="footer-top">
+        <div className="container">
+          <div className="row gy-4">
+            <div className="col-lg-5 col-md-12 footer-info">
+              <a href="index.html" className="logo d-flex align-items-center">
+                <img src="assets/img/logo.png" alt="" />
+                <span>ENG FMMS</span>
+              </a>
+              <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet"/>
+
+              <p>The Faculty of Engineering of University of Ruhuna was established on 1st July 1999 at Hapugala, Galle.  Admission to the Faculty of Engineering, University of Ruhuna, is subject to the University Grants Commission policy on university admissions.</p>
+              <div className="social-links mt-3">
+                <a href="https://www.eng.ruh.ac.lk/dmme/" className="twitter"><i className="bi bi-twitter"></i></a>
+                <a href="https://www.facebook.com/EfacUOR/" className="facebook"><i className="bi bi-facebook"></i></a>
+               
+                <a href="https://www.linkedin.com/company/faculty-of-engineering-university-of-ruhuna/mycompany/verification/" className="linkedin"><i className="bi bi-linkedin"></i></a>
+              </div>
             </div>
 
-            <div className="col-md-6 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">Products</h6>
-              <p>
-                <a className="text-white">University of Ruhuna</a>
-              </p>
-              <p>
-                <a className="text-white">Faculty of Engineering</a>
-              </p>
-              <p>
-                <a className="text-white">ENG-MIS</a>
-              </p>
-              <p>
-                <a className="text-white">Libraryr</a>
-              </p>
+            <div className="col-lg-2 col-6 footer-links">
+              <h4>Useful Links</h4>
+              <ul>
+                <li><i className="bi bi-chevron-right"></i> <a href="#">Home</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="#about">About us</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="#contact">Contact Us</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="#">Terms of service</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              </ul>
             </div>
 
-            <div className="col-md-6 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">Contact</h6>
-              <p><i className="fas fa-home mr-3"></i> Faculty of Engineering,Galle</p>
-              <p><i className="fas fa-envelope mr-3"></i> webmaster@eng.ruh.ac.lk</p>
-              <p><i className="fas fa-phone mr-3"></i> +(94)0 91 2245765/6</p>
+            <div className="col-lg-2 col-6 footer-links">
+              <h4>Our Services</h4>
+              <ul>
+                <li><i className="bi bi-chevron-right"></i> <a href="https://www.ruh.ac.lk/index.php/en/">University of Ruhuna</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="https://www.eng.ruh.ac.lk/">Faculty of Engineering</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="http://paravi.ruh.ac.lk/foenmis/index.php">ENG-MIS</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="#https://www.lib.ruh.ac.lk/Eng/index.php">Library</a></li>
+                <li><i className="bi bi-chevron-right"></i> <a href="https://www.iesl.lk/index.php?lang=en">IESL</a></li>
+              </ul>
             </div>
 
-            <div className="col-md-6 col-lg-3 col-xl-3 mx-auto mt-3">
-              <h6 className="text-uppercase mb-4 font-weight-bold">Follow us</h6>
-              <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: '#3b5998'}} href="#!" role="button"><i className="fab fa-facebook-f"></i></a>
-              <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: '#55acee'}} href="#!" role="button"><i className="fab fa-twitter"></i></a>
-              <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: '#dd4b39'}} href="#!" role="button"><i className="fab fa-google"></i></a>
-              <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: '#ac2bac'}} href="#!" role="button"><i className="fab fa-instagram"></i></a>
-              <a className="btn btn-primary btn-floating m-1" style={{backgroundColor: '#0082ca'}} href="#!" role="button"><i className="fab fa-linkedin-in"></i></a>
+            <div className="col-lg-3 col-md-12 footer-contact text-center text-md-start">
+              <h4>Contact Us</h4>
+              <p>
+              Faculty of Engineering <br />
+              University of Ruhuna<br />
+              Hapugala,<br />
+              Galle <br /><br />
+                <strong>Phone:</strong> +1 5589 55488 55<br />
+                <strong>Email:</strong> info@example.com<br />
+              </p>
             </div>
           </div>
-        </section>
+        </div>
       </div>
 
-      <div className="text-center p-3" style={{backgroundColor: 'rgba(0, 0, 0, 0.2)'}}>
-        © 2020 Copyright:
-        <a className="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+      <div className="container">
+        <div className="copyright">
+          &copy; Copyright <strong><span>FMMS</span></strong>. All Rights Reserved
+        </div>
+        <div className="credits">
+          <p>@2024</p>
+        </div>
       </div>
     </footer>
+
+    
   );
 }
 

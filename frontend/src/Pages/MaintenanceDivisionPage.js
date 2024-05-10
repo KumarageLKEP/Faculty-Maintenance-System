@@ -27,7 +27,7 @@ function StudentPage() {
         <ul className="list-unstyled components">
             
             <li>
-                <a   >Home</a>
+                <a  href="#home" >Home</a>
                 
             </li>
             <li >
@@ -35,7 +35,7 @@ function StudentPage() {
             </li>
            
             <li >
-                <a >Contact</a>
+                <a href="/Home#contact">Contact Us</a>
             </li>
             <li > 
                 <a >Settings</a>

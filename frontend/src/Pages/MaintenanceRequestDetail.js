@@ -187,7 +187,8 @@ function MaintenanceRequestDetail() {
           </div>
 
           <button onClick={handleApprove} type="button" className="btn btn-secondary btn-sm">Approve</button>
-          <button onClick={handleReject} type="button" className="btn btn-secondary btn-sm">Reject</button>
+          <button onClick={handleReject} type="button" className="btn btn-secondary btn-sm" style={{ marginLeft: '10px' }}>Reject</button>
+
           {error && <p className="text-danger mt-3">{error}</p>}
         </div>
       </div>

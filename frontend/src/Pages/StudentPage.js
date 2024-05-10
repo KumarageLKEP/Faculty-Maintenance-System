@@ -39,18 +39,18 @@ function StudentPage() {
         <ul className="list-unstyled components">
             
             <li>
-                <a   >Home</a>
-                
+            <a href="/Home" style={{ color: "black" }}>Home</a>
+
             </li>
             <li >
-                <a >Calander</a>
+                <a style={{ color: "black" }}>Calander </a>
             </li>
            
             <li >
-                <a >Contact</a>
+                <a  href="/Home#contact" style={{ color: "black" }}>Contact</a>
             </li>
             <li > 
-                <a >Settings</a>
+                <a style={{ color: "black" }}>Settings</a>
             </li>
         </ul>
 
@@ -66,7 +66,7 @@ function StudentPage() {
               onClick={toggleSidebar}
             >
               <i className="fas fa-align-left"></i>
-              <i class="bi bi-caret-left-square-fill"></i>
+              <i class="bi bi-sliders"></i>
             </button>
             <button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <i className="fas fa-align-justify"></i>
