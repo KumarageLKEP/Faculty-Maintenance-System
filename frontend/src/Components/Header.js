@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation ,useNavigate } from 'react-router-dom'; 
+import { Link, useLocation, useNavigate } from 'react-router-dom'; 
 import classes from './header.module.css'; 
 import { FaUser } from 'react-icons/fa'; // Import the user icon from Font Awesome
 import axios from 'axios'; // Import axios for making HTTP requests
 import UpdateFullNameModal from './UpdateFullNameModal';
 import UpdateEmailModal from './UpdateEmailModal';
 import UpdatePasswordModal from './UpdatePasswordModal';
-
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
@@ -15,6 +14,7 @@ export default function Header() {
   const location = useLocation(); // Hook to access the current URL
   const [showModal, setShowModal] = useState(false);
   const [selectedModal, setSelectedModal] = useState(null);
+  const navigate = useNavigate(); // Hook for programmatic navigation
 
   useEffect(() => {
     const fetchCurrentUser = async () => {
@@ -58,11 +58,29 @@ export default function Header() {
   const handleLogout = () => {
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
-    window.location.href = '/'; // Redirect to login page
+    navigate('/'); // Redirect to home page
+  };
+
+  const handleDashboardClick = () => {
+    // Check if user is logged in
+    if (currentUser) {
+      // Redirect based on user role
+      if (currentUser.role === 'Student') {
+        navigate(`/studentPage/${currentUser._id}`);
+      } else if (currentUser.role === 'Academic Staff') {
+        navigate(`/academicStaffPage/${currentUser._id}`);
+      } else if (currentUser.role === 'Maintenance Division') {
+        navigate(`/maintenanceDivisionPage/${currentUser._id}`);
+      }
+    } else {
+      // If user is not logged in, navigate to the login page
+      navigate('/Login');
+    }
   };
   
   
-
+  
+  
   return (
     <nav className="navbar navbar-light bg-light">
       <div className="container-fluid">
@@ -79,8 +97,10 @@ export default function Header() {
             <a href="/#about" className={classes.About_Us}>ABOUT US</a>
             
             <a href="/#contact" className={classes.Dashboard}>CONTACT US</a>
-            <a href="/" className={classes.Dashboard}>DASHBOARD</a>
-            
+            <a href="#" className={classes.Dashboard} onClick={handleDashboardClick}>
+              DASHBOARD
+            </a>
+
    
       {currentUser ? (
         <div className={classes.currentUser}>

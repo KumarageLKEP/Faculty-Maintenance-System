@@ -1,6 +1,6 @@
 import React from 'react';
+import '../styles.css';
 
-import 'C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/src/Pages/styles.css'
 
 export default function Home() {
   return (
