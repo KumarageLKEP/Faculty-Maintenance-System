@@ -78,10 +78,8 @@ export default function Header() {
             </Link>
             <a href="/#about" className={classes.About_Us}>ABOUT US</a>
             
-
-
-
             <a href="/#contact" className={classes.Dashboard}>CONTACT US</a>
+            <a href="/" className={classes.Dashboard}>DASHBOARD</a>
             
    
       {currentUser ? (
@@ -107,7 +105,7 @@ export default function Header() {
           )}
         </div>
       ) : (
-        <Link to="/Login" className={classes.Login}>
+        <Link to="/Login" className={classes.Login} >
           LOGIN
         </Link>
       )}

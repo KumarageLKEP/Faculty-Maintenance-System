@@ -27,7 +27,7 @@ function StudentPage() {
         <ul className="list-unstyled components">
             
             <li>
-                <a style={{ color: "black" }} href="#home" >Home</a>
+                <a style={{ color: "black" }} href="/" >Home</a>
                 
             </li>
             <li >
@@ -61,7 +61,7 @@ function StudentPage() {
             <div className="collapse navbar-collapse" id="navbarSupportedContent">
               <ul className="nav navbar-nav ml-auto">
                 <li className="nav-item active">
-                  <a className="nav-link" href="#">Welcome to Ma Dashboard</a>
+                  <a className="nav-link" href="#">Welcome to Maintenance Division Dashboard</a>
                 </li>
               </ul>
             </div>

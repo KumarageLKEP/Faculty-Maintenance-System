@@ -39,7 +39,7 @@ function StudentPage() {
         <ul className="list-unstyled components">
             
             <li>
-            <a href="/Home" style={{ color: "black" }}>Home</a>
+            <a href="/" style={{ color: "black" }}>Home</a>
 
             </li>
             <li >
