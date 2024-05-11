@@ -32,22 +32,35 @@ function StudentNotifications({ userId }) {
 
   return (
     <div>
-      <h2>Notifications</h2>
       {loading ? (
         <p>Loading...</p>
       ) : error ? (
         <p>{error}</p>
       ) : notifications && notifications.length > 0 ? (
-        <ul>
-          {notifications.map((notification, index) => (
-            <li key={index}>{notification.message}</li>
-          ))}
-        </ul>
+        <div className="table-responsive">
+        <table className="table table-dark table-striped">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            {notifications.map((notification, index) => (
+              <tr key={index}>
+                <td>{index + 1}</td>
+                <td>{notification.message}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        </div>
       ) : (
         <p>No notifications to display</p>
       )}
     </div>
   );
+  
 }
 
 export default StudentNotifications;

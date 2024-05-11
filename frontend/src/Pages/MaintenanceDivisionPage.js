@@ -27,19 +27,17 @@ function StudentPage() {
         <ul className="list-unstyled components">
             
             <li>
-                <a  href="#home" >Home</a>
+                <a style={{ color: "black" }} href="#home" >Home</a>
                 
             </li>
             <li >
-                <a >Calander</a>
+                <a style={{ color: "black" }}>Calander</a>
             </li>
            
             <li >
-                <a href="/Home#contact">Contact Us</a>
+                <a href="/Home#contact" style={{ color: "black" }}>Contact Us</a>
             </li>
-            <li > 
-                <a >Settings</a>
-            </li>
+            
         </ul>
 
       </nav>

@@ -76,7 +76,7 @@ function AddRequest() {
           <div className="row d-flex justify-content-center align-items-center h-100">
             <div className="col-md-9 col-lg-6 col-xl-5">
               <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                src="../images/features copy.png"
                 className="img-fluid"
                 alt="Sample image"
               />
@@ -156,11 +156,9 @@ function AddRequest() {
                   placeholder="Enter description"
                 />
 
-            <button className={Classes.button_request} type="submit" onClick={onSubmit}>
-              <i className="far fa-check-square"></i>&nbsp; submit
+            <button className= "btn btn-secondary btn-lg" style={{marginTop : "9px"}}    type="submit" onClick={onSubmit}>
+              submit
             </button>
-           
-        
         </div>
         </form>
         </div> 

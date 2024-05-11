@@ -1,5 +1,4 @@
 import React from 'react';
-import 'remixicon/fonts/remixicon.css';
 
 import 'C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/src/Pages/styles.css'
 
@@ -12,16 +11,9 @@ export default function Home() {
       <meta name="description" content="" />
       <meta name="keywords" content="" />
 
-      <link rel="icon" href="assets/img/favicon.png" />
-      <link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png" />
+      
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/aos/aos.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/bootstrap/css/bootstrap.min.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/bootstrap-icons/bootstrap-icons.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/glightbox/css/glightbox.min.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/remixicon/remixicon.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/swiper/swiper-bundle.min.css" />
-      <link rel="stylesheet" href="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/css/style.css" />
+     
 
       
       <section id="hero" className="hero d-flex align-items-center">
@@ -116,33 +108,11 @@ export default function Home() {
 
 </section>
 
-<section id="clients" class="clients">
+<section  id="features" class="features">
 
-<div class="container" data-aos="fade-up">
-
-  <header class="section-header">
-    <h2>Our Service Providers</h2>
-    <p> outsourced solutions for facility upkeep.</p>
-  </header>
-
-  <div class="clients-slider swiper">
-    <div class="swiper-wrapper align-items-center">
-      <div class="swiper-slide"><img src="assets/img/clients/client-1.png" class="img-fluid" alt=""/></div>
-      <div class="swiper-slide"><img src="assets/img/clients/client-2.png" class="img-fluid" alt=""/></div>
-      <div class="swiper-slide"><img src="assets/img/clients/client-3.png" class="img-fluid" alt=""/></div>
-      <div class="swiper-slide"><img src="assets/img/clients/client-4.png" class="img-fluid" alt=""/></div>
-    </div>
-    <div class="swiper-pagination"></div>
-  </div>
-</div>
-
-</section>
-
-<section id="features" class="features">
-
-<div class="container" data-aos="fade-up">
-  <div class="row feature-icons" data-aos="fade-up">
-          <h3>Catch us on our Mobile App</h3>
+<div class="container"  data-aos="fade-up">
+  <div style={{ marginTop: '10px' }}class="row feature-icons" data-aos="fade-up">
+          <h3  > Catch us on our Mobile App</h3>
 
           <div class="row">
 
@@ -352,17 +322,7 @@ export default function Home() {
 
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
- 
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/aos/aos.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/vendor/php-email-form/validate.js"></script>
 
-  
-  <script src="C:/Users/HOME/Documents/GitHub/Faculty-Maintenance-System/frontend/assets/js/main.js"></script>
 
 
         </div>

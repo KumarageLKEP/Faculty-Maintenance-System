@@ -13,9 +13,9 @@ import Home from './Pages/Home_Page/Home';
 export default function AppRoutes() {
   return (
     <Routes>
-      <Route path="/" element={<Login />} />
+      <Route path="/Login" element={<Login />} />
       <Route path="/register" element={<Register />} />
-      <Route path="/home" element={<Home />} />
+      <Route path="/" element={<Home />} />
       <Route path="/adminPage/:Id" element={<AdminPage />} />
       <Route path="/academicStaffPage/:Id" element={<AcademicStaffPage />} />
       <Route path="/studentPage/:Id" element={<StudentPage />} />

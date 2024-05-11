@@ -3,7 +3,7 @@ import MaintenanceRequests from './MaintenanceRequests';
 import StudentOngoingMaintenance from './StudentOngoingMaintenance';
 import StudentNotifications from './StudentNotifications';
 import { Link, useLocation } from 'react-router-dom';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'; // Import Bootstrap JavaScript bundle
+
 import { Collapse } from 'bootstrap'; // Import the Collapse component from Bootstrap
 import './styles.css';
 
@@ -30,8 +30,8 @@ function StudentPage() {
 
   return (
     
-    <div className="wrapper">
-      <nav id="sidebar">
+    <div  className="wrapper">
+      <nav   id="sidebar">
         <div className="sidebar-header">
             <h3>Dashboard</h3>
         </div>
@@ -49,9 +49,6 @@ function StudentPage() {
             <li >
                 <a  href="/Home#contact" style={{ color: "black" }}>Contact</a>
             </li>
-            <li > 
-                <a style={{ color: "black" }}>Settings</a>
-            </li>
         </ul>
 
       </nav>
@@ -65,8 +62,8 @@ function StudentPage() {
               className="btn btn-info"
               onClick={toggleSidebar}
             >
-              <i className="fas fa-align-left"></i>
-              <i class="bi bi-sliders"></i>
+              <i className="bi bi-caret-left-square-fill"></i>
+           
             </button>
             <button className="btn btn-dark d-inline-block d-lg-none ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <i className="fas fa-align-justify"></i>

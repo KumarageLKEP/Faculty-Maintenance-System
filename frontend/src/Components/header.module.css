@@ -13,6 +13,7 @@
   .container {
     display: flex;
     width: 900px;
+    height: 30px;
     padding: 10px 0px;
     justify-content: space-between;
     align-items: center;
@@ -71,14 +72,8 @@
     color: #FFF;
   }
   
-  .imageClass3 {
-    height: 60px;
-  }
-  
-  .imageClass2 {
-    width: 70px;
-  }
-  
+
+
   .cd__main {
     display: block !important;
     background: linear-gradient(to right, #00b09b, #96c93d) !important;
@@ -113,6 +108,10 @@
   
   .userName {
     font-weight: bold;
+    font-family: 500;
+    font-style: normal;
+    color: var(--Gray-gray-700, #4A5568);
+    font-size: 16px;
   }
 
 
