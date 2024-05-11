@@ -45,6 +45,7 @@ function MaintenanceRequestDetail() {
 
         const notificationResponse = await axios.post('http://localhost:8000/sendNotification', {
           userId: maintenanceRequest.submittedBy,
+          maintenanceId: maintenanceRequest._id,
           message: `Your maintenance request of ${maintenanceRequest.description} has been approved and is now in progress.`
         });
   

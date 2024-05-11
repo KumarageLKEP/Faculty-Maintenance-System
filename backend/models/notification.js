@@ -7,6 +7,11 @@ const notificationSchema = new mongoose.Schema({
     ref: 'User', // Reference to the User collection, assuming you have a User model
     required: true
   },
+  maintenanceId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'MaintenanceRequest', // Reference to the User collection, assuming you have a MaintenanceRequest model
+    required: true
+  },
   message: {
     type: String,
     required: true

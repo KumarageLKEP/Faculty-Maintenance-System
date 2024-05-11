@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router-dom';
 import '../App.css'; // Import the CSS file
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-
 function AllRequests() {
   const [maintenanceRequests, setAllRequests] = useState([]);
   const [error, setError] = useState(null);
@@ -24,6 +23,14 @@ function AllRequests() {
     fetchAllRequests();
   }, []);
 
+  const calculatePendingDays = (createdAt) => {
+    const today = new Date();
+    const createdDate = new Date(createdAt);
+    const differenceInTime = today.getTime() - createdDate.getTime();
+    const differenceInDays = Math.ceil(differenceInTime / (1000 * 3600 * 24));
+    return differenceInDays;
+  };
+
   const handleButtonClick = (requestId) => {
     navigate(`/maintenanceRequest/${requestId}`);
   };
@@ -32,21 +39,22 @@ function AllRequests() {
     <table className="table table-dark table-striped">
       <thead>
         <tr>
-          <th>Description</th>
           <th>Place</th>
+          <th>Status</th>
+          <th>Action</th>
         </tr>
       </thead>
       <tbody>
         {error ? (
           <tr>
-            <td colSpan="2">Error: {error}</td>
+            <td colSpan="4">Error: {error}</td>
           </tr>
         ) : (
           <>
             {maintenanceRequests.map((request) => (
               <tr key={request._id}>
-                <td>{request.description}</td>
                 <td>{request.place}</td>
+                <td>{request.status} for <span style={{ color: 'red' }}>{calculatePendingDays(request.createdAt)}</span> Days</td>
                 <td>
                   <button
                     onClick={() => handleButtonClick(request._id)}
@@ -62,6 +70,6 @@ function AllRequests() {
       </tbody>
     </table>
   );
-}  
+}
 
 export default AllRequests;

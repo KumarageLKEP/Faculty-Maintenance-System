@@ -78,7 +78,7 @@ function StudentPage() {
                   onClick={() => setActiveTab('allmaintenanceRequests')}
                   href="#"
                 >
-                  All Requests Maintenance Requests
+                  Pending Maintenance Requests
                 </a>
               </li>
               <li className="nav-item">
@@ -105,9 +105,6 @@ function StudentPage() {
               {activeTab === 'allmaintenanceRequests' && (
                 <div className="tab-pane fade show active">
                   <AllRequests />
-                  <Link to="/">
-                    <button>Add Request</button>
-                  </Link>
                 </div>
               )}
 
