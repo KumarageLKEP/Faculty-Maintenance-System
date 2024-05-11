@@ -43,6 +43,22 @@ router.get('/notifications/:userId', async (req, res) => {
     }
 });
 
+router.get('/notifications/:maintenanceId', async (req, res) => {
+  try {
+    const maintenanceId = req.params.maintenanceId;
+    // Find notifications for the specified maintenanceId
+    const notifications = await Notification.find({ maintenanceId });
+    if (!notifications) {
+      return res.status(404).json({ success: false, message: 'Notifications not found' });
+    }
+
+    return res.status(200).json({ success: true, notifications });
+  } catch (error) {
+    console.error('Error fetching notifications:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
 router.get('/notifications', async (req, res) => {
     try {
       const notifications = await Notification.find().exec();

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 function CompletedMaintenance() {
   const [completedMaintenance, setCompletedMaintenance] = useState([]);
+  const [completedDates, setCompletedDates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -24,6 +25,40 @@ function CompletedMaintenance() {
     fetchCompletedMaintenance();
   }, []);
 
+  useEffect(() => {
+    const fetchCompletedDate = async () => {
+      try {
+        const completedDates = [];
+        for (const maintenance of completedMaintenance) {
+          const response = await axios.get(`http://localhost:8000/notifications`);
+          const filteredNotifications = response.data.existingNotifications.filter(
+            notification => notification.maintenanceId === maintenance._id
+          );
+          console.log(filteredNotifications);
+          completedDates.push(filteredNotifications);
+        }
+        setCompletedDates(completedDates);
+        // Log notifications
+        completedDates.forEach((existingNotifications) => {
+          console.log(existingNotifications);
+        });
+      } catch (error) {
+        setError(error.response?.data?.message || 'Error fetching notifications');
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    if (completedMaintenance.length > 0) {
+      fetchCompletedDate();
+    }
+  }, [completedMaintenance]);
+
+  const completeDays = (createdAt) => {
+    const dayCompleted = new Date(createdAt);
+    return dayCompleted.toDateString(); // Convert date to string for display
+  };
+
   return (
     <div className="main-container">
       <div className="table-responsive">
@@ -38,7 +73,14 @@ function CompletedMaintenance() {
             {completedMaintenance.map((task, index) => (
               <tr key={index}>
                 <td>{task.description}</td>
-                <td>{task.completedAt}</td> {/* Assuming completedAt is a property in your task object */}
+                <td>
+                  {/* Rendering completed date for each maintenance task */}
+                  {completedDates[index] && completedDates[index].map((filteredNotification, notificationIndex) => (
+                    <div key={notificationIndex}>
+                      <span style={{ color: 'green' }}>{completeDays(filteredNotification.createdAt)}</span>
+                    </div>
+                  ))}
+                </td>
               </tr>
             ))}
           </tbody>
