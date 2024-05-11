@@ -6,6 +6,8 @@ import axios from 'axios'; // Import axios for making HTTP requests
 import UpdateFullNameModal from './UpdateFullNameModal';
 import UpdateEmailModal from './UpdateEmailModal';
 import UpdatePasswordModal from './UpdatePasswordModal';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Header() {
   const [showDropdown, setShowDropdown] = useState(false); // State to manage dropdown visibility
@@ -59,6 +61,7 @@ export default function Header() {
     localStorage.removeItem('currentUser');
     setCurrentUser(null);
     navigate('/'); // Redirect to home page
+    toast.success('Logout successfully');
   };
 
   const handleDashboardClick = () => {

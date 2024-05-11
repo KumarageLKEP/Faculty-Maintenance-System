@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import Classes from '../Pages/register.module.css';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Register() {
 
@@ -76,6 +78,7 @@ function Register() {
           });
   
           navigate('/');
+          toast.success('Request Created Successfully');
         }
       })
       .catch((error) => {

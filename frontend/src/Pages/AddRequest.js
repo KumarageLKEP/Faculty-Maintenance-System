@@ -3,6 +3,7 @@ import { toast } from 'react-toastify';
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router-dom';
 import Classes from '../Pages/addrequest.module.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 function AddRequest() {
   const { Id } = useParams();
