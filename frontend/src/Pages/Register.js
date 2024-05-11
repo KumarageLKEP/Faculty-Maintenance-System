@@ -45,9 +45,9 @@ function Register() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-
+  
     const { fullName, email, regNo, role, department, contactNumber, password, confirmPassword } = formData;
-
+  
     const data = {
       fullName,
       email,
@@ -58,9 +58,10 @@ function Register() {
       password,
       confirmPassword,
     };
-
+  
     axios.post('http://localhost:8000/register/user', data)
       .then((res) => {
+        console.log(res.data);
         if (res.data.success) {
           alert('User Created Successfully');
           setFormData({
@@ -73,14 +74,15 @@ function Register() {
             password: '',
             confirmPassword: '',
           });
-
+  
           navigate('/');
         }
       })
       .catch((error) => {
-        console.error(error);
+        console.error('Error:', error.response.data.error);
       });
   };
+  
 
   return (
     <body>
@@ -188,7 +190,8 @@ function Register() {
                 />
               </div>
               <div className="text-center">
-              <button type="button" class="btn btn-secondary btn-lg" onClick={() => { window.location.href = '/' }}>Sign Up</button>
+              <button type="submit" className="btn btn-secondary btn-lg">Sign Up</button>
+
               </div>
             </form>
           </div>
