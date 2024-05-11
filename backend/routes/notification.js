@@ -6,11 +6,12 @@ const Notification = require('../models/notification');
 router.post('/sendNotification', async (req, res) => {
   try {
     // Extract necessary information from the request body
-    const { userId, message } = req.body;
+    const { userId, maintenanceId, message } = req.body;
 
     // Create a new notification document
     const notification = new Notification({
       userId,
+      maintenanceId,
       message
     });
 

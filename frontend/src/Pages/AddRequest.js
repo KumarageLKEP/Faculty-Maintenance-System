@@ -9,7 +9,7 @@ function AddRequest() {
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
-    department:'',
+    department: '',
     place: '',
     issueType: '',
     priority: '',
@@ -17,6 +17,7 @@ function AddRequest() {
     description: '',
     submittedBy: Id,
   });
+  
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -30,25 +31,25 @@ function AddRequest() {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-
+  
     const { department, place, issueType, priority, image, description, submittedBy } = formData;
-
+  
     const data = new FormData();
-    data.append('department', department);
+    data.append('department', formData.department === 'Other' ? formData.otherDepartment : department);
     data.append('place', place);
-    data.append('issueType', issueType);
+    data.append('issueType', formData.issueType === 'Other' ? formData.otherIssueType : issueType);
     data.append('priority', priority);
     data.append('image', image);
     data.append('description', description);
     data.append('submittedBy', submittedBy);
-
+  
     try {
       const response = await axios.post('http://localhost:8000/maintenanceRequest', data, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
       });
-
+  
       if (response.data.success) {
         toast.success('Request Created Successfully');
         setFormData({
@@ -60,14 +61,55 @@ function AddRequest() {
           description: '',
           submittedBy: Id,
         });
-
+  
         navigate(`/studentPage/${Id}`);
       }
     } catch (error) {
       console.error(error);
     }
   };
+  
 
+  const renderDepartmentInput = () => {
+    if (formData.department === 'Other') {
+      return (
+        <div className="form-outline mb-4">
+          <input
+            type="text"
+            value={formData.otherDepartment} // Update value to formData.otherDepartment
+            className="form-control"
+            onChange={handleInputChange} // Handle changes in otherDepartment
+            name="otherDepartment" // Update name to otherDepartment
+            placeholder="Enter department or place"
+          />
+        </div>
+      );
+    }
+    return null;
+  };
+  
+  const renderIssueTypeInput = () => {
+    if (formData.issueType === 'Other') {
+      return (
+        <div className="form-outline mb-4">
+          <input
+            type="text"
+            value={formData.otherIssueType} // Update value to formData.otherIssueType
+            className="form-control"
+            onChange={handleInputChange} // Handle changes in otherIssueType
+            name="otherIssueType" // Update name to otherIssueType
+            placeholder="Enter issue type"
+          />
+        </div>
+      );
+    }
+    return null;
+  };
+  
+  
+  
+
+  
   return (
     
     <body>
@@ -91,12 +133,12 @@ function AddRequest() {
           <div className="form-outline mb-4">
           <select
                   className="form-control"
-                  value={formData.place}
+                  value={formData.department}
                   onChange={handleInputChange}
-                  name="place"
-                  placeholder="Enter Place"
+                  name="department"
+                  placeholder="Enter department or place"
                 >
-                  <option value="">Select department</option>
+                  <option value="">Select department or palce</option>
                   <option value="Electrical and Information Department">Electrical and Information Department</option>
                   <option value="Civil and Environmental Department">Civil and Environmental Department</option>
                   <option value="Mechanical and Manufacturing Department">Mechanical and Manufacturing Department</option>
@@ -104,7 +146,26 @@ function AddRequest() {
                   <option value="Interdisciplinary Studies">Interdisciplinary Studies</option>
                   <option value="Maintenance Division">Maintenance Division</option>
                   <option value="Admin Sector">Admin Sector</option>
+                  <option value="Canteen">Canteen</option>
+                  <option value="Hostel D">Hostel D</option>
+                  <option value="Hostel C">Hostel C</option>
+                  <option value="Library">Library</option>
+                  <option value="LT1">LT1</option>
+                  <option value="LT2">LT2</option>
+                  <option value="Other">Other</option>
                 </select>
+              </div>
+              {renderDepartmentInput()}
+              <div className="form-outline mb-4">
+                <input
+                  type="text"
+                  value={formData.place}
+                  className="form-control"
+                  onChange={handleInputChange}
+                  name="place"
+                  placeholder="Enter the place"
+                />
+                <label>Eg: Room-303</label>
               </div>
               <div className="form-outline mb-4">
               <select
@@ -112,7 +173,7 @@ function AddRequest() {
                   value={formData.issueType}
                   onChange={handleInputChange}
                   name="issueType"
-                  placeholder="Enter IssueType"
+                  placeholder="Enter issue type"
                 >
               <option value="">Select Issue Type</option>
               <option value="Electrical">Electrical</option>
@@ -127,6 +188,7 @@ function AddRequest() {
 
             </select>
             </div>
+            {renderIssueTypeInput()}
             <div className="form-outline mb-4">
             <select
                   className="form-control"

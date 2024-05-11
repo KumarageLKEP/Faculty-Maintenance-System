@@ -31,9 +31,10 @@ router.post('/maintenanceRequest', (req, res) => {
     }
 
     try {
-      const { place, issueType, priority, description } = req.body;
+      const { department, place, issueType, priority, description } = req.body;
 
       const newMaintenanceRequest = new MaintenanceRequest({
+        department,
         place,
         issueType,
         priority,

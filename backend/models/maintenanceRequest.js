@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
 const maintenanceRequestSchema = new mongoose.Schema({
+  department: {
+    type: String,
+    required: true,
+  },
   place: {
     type: String,
     required: true,
