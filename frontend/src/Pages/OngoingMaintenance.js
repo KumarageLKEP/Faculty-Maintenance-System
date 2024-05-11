@@ -6,6 +6,10 @@ function OngoingMaintenance() {
   const [updatedDates, setUpdatedDates] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [checkedBoxes, setCheckedBoxes] = useState(() => {
+    const storedCheckedBoxes = localStorage.getItem('checkedBoxes');
+    return storedCheckedBoxes ? JSON.parse(storedCheckedBoxes) : {};
+  });
 
   useEffect(() => {
     const fetchOngoingMaintenance = async () => {
@@ -22,10 +26,10 @@ function OngoingMaintenance() {
         setLoading(false);
       }
     };
-  
+
     fetchOngoingMaintenance();
   }, []);
-  
+
   useEffect(() => {
     const fetchUpdatedDate = async () => {
       try {
@@ -49,11 +53,15 @@ function OngoingMaintenance() {
         setLoading(false);
       }
     };
-  
+
     if (ongoingMaintenance.length > 0) {
       fetchUpdatedDate();
     }
   }, [ongoingMaintenance]);
+
+  useEffect(() => {
+    localStorage.setItem('checkedBoxes', JSON.stringify(checkedBoxes));
+  }, [checkedBoxes]);
 
   const calculatePendingDays = (createdAt) => {
     const today = new Date();
@@ -87,6 +95,14 @@ function OngoingMaintenance() {
     }
 
     setOngoingMaintenance(updatedMaintenance);
+    updateCheckedBoxes(index, newProgress);
+  };
+
+  const updateCheckedBoxes = (index, newProgress) => {
+    setCheckedBoxes(prevState => ({
+      ...prevState,
+      [index]: newProgress
+    }));
   };
 
   return (
@@ -116,8 +132,8 @@ function OngoingMaintenance() {
                   <input
                     type="checkbox"
                     id={`beginning_${index}`}
-                    checked={task.progress === "Begining"}
-                    onChange={() => handleProgressChange(task._id, index, task.progress === "Begining" ? "" : "Begining")}
+                    checked={checkedBoxes[index] === "Begining"}
+                    onChange={() => handleProgressChange(task._id, index, checkedBoxes[index] === "Begining" ? "" : "Begining")}
                   />
                   <label htmlFor={`beginning_${index}`} style={{ color: 'red' }}>Begining </label>
                 </div>
@@ -125,8 +141,8 @@ function OngoingMaintenance() {
                   <input
                     type="checkbox"
                     id={`finishing_${index}`}
-                    checked={task.progress === "Finishing"}
-                    onChange={() => handleProgressChange(task._id, index, task.progress === "Finishing" ? "" : "Finishing")}
+                    checked={checkedBoxes[index] === "Finishing"}
+                    onChange={() => handleProgressChange(task._id, index, checkedBoxes[index] === "Finishing" ? "" : "Finishing")}
                   />
                   <label htmlFor={`finishing_${index}`} style={{ color: 'yellow' }}>Finishing</label>
                 </div>
@@ -134,8 +150,8 @@ function OngoingMaintenance() {
                   <input
                     type="checkbox"
                     id={`completed_${index}`}
-                    checked={task.progress === "Completed"}
-                    onChange={() => handleProgressChange(task._id, index, task.progress === "Completed" ? "" : "Completed")}
+                    checked={checkedBoxes[index] === "Completed"}
+                    onChange={() => handleProgressChange(task._id, index, checkedBoxes[index] === "Completed" ? "" : "Completed")}
                   />
                   <label htmlFor={`completed_${index}`} style={{ color: 'green' }}>Completed</label>
                 </div>
@@ -147,7 +163,5 @@ function OngoingMaintenance() {
     </div>
   );
 }
-
-
 
 export default OngoingMaintenance;
