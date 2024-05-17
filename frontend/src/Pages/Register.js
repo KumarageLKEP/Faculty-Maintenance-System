@@ -17,19 +17,23 @@ function Register() {
     contactNumber: '',
     password: '',
     confirmPassword: '',
+    status: '' // Add status field to formData state
   });
 
   const navigate = useNavigate();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-
     if (name === 'role') {
-      setFormData({ ...formData, role: value });
+      // Automatically set status based on role
+      const status = value === 'Maintenance Division' ? 'inactive' : 'active';
+      setFormData({ ...formData, role: value, status });
     } else {
       setFormData({ ...formData, [name]: value });
     }
   };
+  
+
 
   useEffect(() => {
     if (formData.regNo.startsWith('EG')) {
@@ -50,6 +54,9 @@ function Register() {
   
     const { fullName, email, regNo, role, department, contactNumber, password, confirmPassword } = formData;
   
+    // Automatically set status based on role if not already set
+    const status = formData.status || (role === 'Maintenance Division' ? 'inactive' : 'active');
+  
     const data = {
       fullName,
       email,
@@ -59,6 +66,7 @@ function Register() {
       contactNumber,
       password,
       confirmPassword,
+      status // Include status in data object
     };
   
     axios.post('http://localhost:8000/register/user', data)
@@ -75,6 +83,7 @@ function Register() {
             contactNumber: '',
             password: '',
             confirmPassword: '',
+            status: '' // Reset status after submission
           });
   
           navigate('/');
@@ -85,6 +94,7 @@ function Register() {
         console.error('Error:', error.response.data.error);
       });
   };
+  
   
 
   return (

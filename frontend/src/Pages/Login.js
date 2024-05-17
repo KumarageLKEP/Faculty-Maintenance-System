@@ -33,16 +33,28 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:8000/login', {
         regNo,
         password,
       });
-
+  
       if (response.data.success) {
-        handleLogin(response.data.user);
-        toast.success('Login successful!');
+        const { user } = response.data;
+        // Check if the user object contains the 'status' field
+        if ('status' in user) {
+          if (user.status === 'active') {
+            handleLogin(user);
+            toast.success('Login successful!');
+          } else {
+            toast.error('Your account is inactive. Please contact an administrator.');
+          }
+        } else {
+          // If the 'status' field is not provided, consider the account active
+          handleLogin(user);
+          toast.success('Login successful!');
+        }
       } else {
         toast.error('Authentication failed');
       }
@@ -51,6 +63,8 @@ function Login() {
       toast.error('Error occurred during login');
     }
   };
+  
+  
 
   const handleCancel = () => {
     navigate('/');
