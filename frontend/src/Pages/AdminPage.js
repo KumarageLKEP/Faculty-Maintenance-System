@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import { toast, ToastContainer } from 'react-toastify';
 
 function AdminPage() {
   const navigate = useNavigate();
@@ -26,6 +27,7 @@ function AdminPage() {
   const handleApprove = async (userId) => {
     try {
       await axios.put(`http://localhost:8000/user/approve/${userId}`);
+      toast.success('Approve successful!');
       fetchRequests();
     } catch (error) {
       console.error('Error approving request:', error);
@@ -36,6 +38,7 @@ function AdminPage() {
   const handleReject = async (userId) => {
     try {
       await axios.delete(`http://localhost:8000/user/delete/${userId}`);
+      toast.success('Reject successful!');
       fetchRequests();
     } catch (error) {
       console.error('Error rejecting request:', error);
