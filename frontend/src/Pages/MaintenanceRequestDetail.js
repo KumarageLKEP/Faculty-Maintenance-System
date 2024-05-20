@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom'; // Import useNavigate
+import { useParams, useNavigate } from 'react-router-dom';
 import '../App.css';
 import '../Pages/maintainancedetails.module.css';
 
@@ -33,6 +33,24 @@ function MaintenanceRequestDetail() {
     fetchMaintenanceRequest();
   }, [id]);
 
+  const sendNotification = async (userId, maintenanceId, message) => {
+    try {
+      const notificationResponse = await axios.post('http://localhost:8000/sendNotification', {
+        userId,
+        maintenanceId,
+        message,
+      });
+
+      if (notificationResponse.data.success) {
+        console.log('Notification sent successfully');
+      } else {
+        console.error('Failed to send notification:', notificationResponse.data.message);
+      }
+    } catch (error) {
+      console.error('Error sending notification:', error);
+    }
+  };
+
   const handleApprove = async () => {
     try {
       const approveResponse = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/approve`);
@@ -43,18 +61,12 @@ function MaintenanceRequestDetail() {
           status: 'In Progress'
         }));
 
-        const notificationResponse = await axios.post('http://localhost:8000/sendNotification', {
-          userId: maintenanceRequest.submittedBy,
-          maintenanceId: maintenanceRequest._id,
-          message: `Your maintenance request of ${maintenanceRequest.description} has been approved and is now in progress.`
-        });
-  
-        if (notificationResponse.data.success) {
-          console.log('Notification sent successfully');
-        } else {
-          console.error('Failed to send notification:', notificationResponse.data.message);
-        }
-  
+        await sendNotification(
+          maintenanceRequest.submittedBy,
+          maintenanceRequest._id,
+          `Your maintenance request of ${maintenanceRequest.description} has been approved and is now in progress.`
+        );
+
         navigate(-1);
       } else {
         setError('Failed to approve maintenance request');
@@ -70,18 +82,12 @@ function MaintenanceRequestDetail() {
       const rejectResponse = await axios.post(`http://localhost:8000/maintenanceRequest/${id}/reject`);
       
       if (rejectResponse.data.success) {
-        setMaintenanceRequest(null);
+        await sendNotification(
+          maintenanceRequest.submittedBy,
+          maintenanceRequest._id,
+          `Your maintenance request of ${maintenanceRequest.description} has been rejected.`
+        );
 
-        const notificationResponse = await axios.post('http://localhost:8000/sendNotification', {
-          userId: maintenanceRequest.submittedBy,
-          message: `Your maintenance request of ${maintenanceRequest.description} has been rejected.`
-        });
-  
-        if (notificationResponse.data.success) {
-          console.log('Notification sent successfully');
-        } else {
-          console.error('Failed to send notification:', notificationResponse.data.message);
-        }
         navigate(-1);
       } else {
         setError('Failed to reject maintenance request');
@@ -92,8 +98,12 @@ function MaintenanceRequestDetail() {
     }
   };
 
-  if (maintenanceRequest === null) {
+  if (loading) {
     return <p>Loading...</p>;
+  }
+
+  if (error) {
+    return <p className="text-danger">{error}</p>;
   }
 
   return (

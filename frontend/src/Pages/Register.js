@@ -87,7 +87,7 @@ function Register() {
           });
   
           navigate('/');
-          toast.success('Request Created Successfully');
+          toast.success('User Created Successfully');
         }
       })
       .catch((error) => {
