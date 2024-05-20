@@ -96,9 +96,6 @@ function MaintenanceRequestDetail() {
     return <p>Loading...</p>;
   }
 
-  const imageBase64 = maintenanceRequest.image.toString('base64');
-  const decodedImage = `data:image/jpeg;base64,${imageBase64}`;
-
   return (
     <div className="container-fluid">
       <div className="d-flex justify-content-between align-items-center py-3">
@@ -167,7 +164,7 @@ function MaintenanceRequestDetail() {
                       </td>
                       <td  className="text-end">
                         <img 
-                          src={decodedImage}
+                          src={maintenanceRequest.image} // Use the image URL directly
                           alt="Maintenance Request"
                           style={{ maxWidth: '100%', maxHeight: 'auto' }}
                         />
