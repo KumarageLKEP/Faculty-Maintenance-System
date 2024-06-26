@@ -72,7 +72,7 @@ function Login() {
 
 
   return (
-    <body> {/* This should be replaced with a valid JSX element */}
+    <body> 
       <section className="vh-100">
         <div className="container-fluid h-custom">
           <div className="row d-flex justify-content-center align-items-center h-100">

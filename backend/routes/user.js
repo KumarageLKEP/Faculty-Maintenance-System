@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
-const User = require('../models/user'); // Assuming your user model is named "User"
+const User = require('../models/user'); 
+const bcrypt = require('bcrypt');
 
 // Create a new user
 router.post('/register/user', async (req, res) => {
@@ -13,9 +14,15 @@ router.post('/register/user', async (req, res) => {
       department,
       contactNumber,
       password,
-      confirmPassword, 
+      confirmPassword,
       status
     } = req.body;
+
+    // Check if the registration number already exists
+    const existingUser = await User.findOne({ regNo });
+    if (existingUser) {
+      return res.status(400).json({ success: false, error: 'User exists, please enter a different registration number' });
+    }
 
     // Create a new user with the provided data
     const newUser = new User({
@@ -41,6 +48,8 @@ router.post('/register/user', async (req, res) => {
     res.status(500).json({ success: false, error: 'Internal Server Error' });
   }
 });
+
+
 
 
 // Get all users
@@ -93,6 +102,7 @@ router.put('/user/update/:id', async (req, res) => {
   }
 });
 
+
 // Delete a user
 router.delete('/user/delete/:id', async (req, res) => {
   try {
@@ -124,8 +134,25 @@ router.post('/login', async (req, res) => {
   try {
     const user = await User.findOne({ regNo });
 
-    if (user && user.password === password) {
-      res.status(200).json({ success: true, message: 'Login successful', user });
+    if (user) {
+      if (user.password.startsWith('$2b$')) {
+        // Password is already hashed with bcrypt
+        const isPasswordMatch = await bcrypt.compare(password, user.password);
+
+        if (isPasswordMatch) {
+          res.status(200).json({ success: true, message: 'Login successful', user });
+        } else {
+          res.status(401).json({ success: false, message: 'Invalid username or password' });
+        }
+      } else {
+        // Password is plaintext (for backward compatibility)
+        if (user.password === password) {
+          // Directly return user for login without updating password
+          res.status(200).json({ success: true, message: 'Login successful', user });
+        } else {
+          res.status(401).json({ success: false, message: 'Invalid username or password' });
+        }
+      }
     } else {
       res.status(401).json({ success: false, message: 'Invalid username or password' });
     }
@@ -134,7 +161,5 @@ router.post('/login', async (req, res) => {
     res.status(500).json({ success: false, message: 'An error occurred while processing your request' });
   }
 });
-
-
 
 module.exports = router;
