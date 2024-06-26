@@ -21,7 +21,6 @@ export default function AppRoutes() {
       <Route path="/studentPage/:Id" element={<StudentPage />} />
       <Route path="/maintenanceDivisionPage/:Id" element={<MaintenanceDivisionPage />} />
       <Route path="/maintenanceRequest/:id" element={<MaintenanceRequestDetail/>} />
-
       <Route path="/add-request/:Id" element={<AddRequest />} />
     </Routes>
   );
