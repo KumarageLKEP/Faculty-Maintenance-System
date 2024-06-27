@@ -72,7 +72,7 @@ function Login() {
           <div className="row">
             <div className="col-lg-6 d-flex flex-column justify-content-center">
               <div className="col-md-8 col-lg-10 col-xl-8 offset-xl-1">
-                <form onSubmit={handleSubmit} style={{marginTop:'-70px'}}>
+                <form onSubmit={handleSubmit}>
                   <div className="divider d-flex align-items-center my-5">
                     <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
                   </div>
@@ -119,16 +119,16 @@ function Login() {
                     </a>
                   </div>
 
-                  <div className="d-flex justify-content-between align-items-center mt-4 pt-2">
+                  <div className="text-center text-lg-start mt-4 pt-2">
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg"
-                      style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' , marginTop:'-30px'}}
+                      style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
                     >
                       Login
                     </button>
-                    <p className="small fw-bold mt-2 pt-1 mb-0" >
-                      Don't have an account? <a href="/register" className="link-danger" >Register</a>
+                    <p className="small fw-bold mt-2 pt-1 mb-0">
+                      Don't have an account? <a href="/register" className="link-danger">Register</a>
                     </p>
                   </div>
                 </form>
