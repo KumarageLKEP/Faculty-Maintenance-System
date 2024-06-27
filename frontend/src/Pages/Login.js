@@ -3,15 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './styles.css';
 
 function Login() {
   const navigate = useNavigate();
   const [regNo, setRegNo] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = async (user) => {
+  const handleLogin = (user) => {
     const { role, _id: id } = user;
 
     switch (role) {
@@ -35,15 +33,16 @@ function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+  
     try {
       const response = await axios.post('http://localhost:8000/login', {
         regNo,
         password,
       });
-
+  
       if (response.data.success) {
         const { user } = response.data;
+        // Check if the user object contains the 'status' field
         if ('status' in user) {
           if (user.status === 'active') {
             handleLogin(user);
@@ -52,6 +51,7 @@ function Login() {
             toast.error('Your account is inactive. Please contact an administrator.');
           }
         } else {
+          // If the 'status' field is not provided, consider the account active
           handleLogin(user);
           toast.success('Login successful!');
         }
@@ -63,6 +63,13 @@ function Login() {
       toast.error('Error occurred during login');
     }
   };
+  
+  
+
+  const handleCancel = () => {
+    navigate('/');
+  };
+
 
   return (
     <div>
@@ -72,63 +79,60 @@ function Login() {
           <div className="row">
             <div className="col-lg-6 d-flex flex-column justify-content-center">
               <div className="col-md-8 col-lg-10 col-xl-8 offset-xl-1">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{marginTop:'-70px'}}>
                   <div className="divider d-flex align-items-center my-5">
                     <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
                   </div>
 
-                  <div className="form-outline mb-4">
-                    <input
-                      type="text"
-                      id="regNo"
-                      className="form-control form-control-lg"
-                      value={regNo}
-                      onChange={(e) => setRegNo(e.target.value)}
-                      placeholder="Enter your username"
-                      required
-                    />
-                    <label className="form-label" htmlFor="regNo">
-                      User Name
+                <div data-mdb-input-init className="form-outline mb-4">
+                  <input
+                    type="text"
+                    id="form3Example3"
+                    className="form-control form-control-lg"
+                    onChange={(e) => setRegNo(e.target.value)}
+                    placeholder="Enter a valid user name"
+                  />
+                  <label className="form-label" htmlFor="form3Example3">
+                    User Name
+                  </label>
+                  <br />
+                  <small style={{ color: 'red' }}>Enter your registration number</small>
+                </div>
+                <div data-mdb-input-init className="form-outline mb-3">
+                  <input
+                    type="password"
+                    id="form3Example4"
+                    className="form-control form-control-lg"
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter password"
+                  />
+                  <label className="form-label" htmlFor="form3Example4">
+                    Password
+                  </label>
+                </div>
+
+                <div className="d-flex justify-content-between align-items-center">
+                  <div className="form-check mb-0">
+                    <input className="form-check-input me-2" type="checkbox" value="" id="form2Example3" />
+                    <label className="form-check-label" htmlFor="form2Example3">
+                      Remember me
                     </label>
                   </div>
+                  <a href="#!" className="text-body">
+                    Forgot password?
+                  </a>
+                </div>
 
-                  <div className="form-outline mb-3">
-                    <input
-                      type="password"
-                      id="password"
-                      className="form-control form-control-lg"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      placeholder="Enter your password"
-                      required
-                    />
-                    <label className="form-label" htmlFor="password">
-                      Password
-                    </label>
-                  </div>
-
-                  <div className="d-flex justify-content-between align-items-center mb-4">
-                    <div className="form-check">
-                      <input className="form-check-input" type="checkbox" id="rememberMe" />
-                      <label className="form-check-label" htmlFor="rememberMe">
-                        Remember me
-                      </label>
-                    </div>
-                    <a href="#!" className="text-body">
-                      Forgot password?
-                    </a>
-                  </div>
-
-                  <div className="text-center text-lg-start mt-4 pt-2">
+                  <div className="d-flex justify-content-between align-items-center mt-4 pt-2">
                     <button
                       type="submit"
                       className="btn btn-primary btn-lg"
-                      style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+                      style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' , marginTop:'-30px'}}
                     >
                       Login
                     </button>
-                    <p className="small fw-bold mt-2 pt-1 mb-0">
-                      Don't have an account? <a href="/register" className="link-danger">Register</a>
+                    <p className="small fw-bold mt-2 pt-1 mb-0" >
+                      Don't have an account? <a href="/register" className="link-danger" >Register</a>
                     </p>
                   </div>
                 </form>
@@ -144,7 +148,7 @@ function Login() {
           </div>
         </div>
       </section>
-    </div>
+    </body>
   );
 }
 
