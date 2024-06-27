@@ -1,12 +1,37 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useLocation  } from 'react-router-dom';
 import AllRequests from './AllRequests';
 import OngoingMaintenance from './OngoingMaintenance';
 import CompletedMaintenance from './CompletedMaintenance';
+import ProfileEditModal from './ProfileEditModal';
 import Reviews from './Reviews';
 
 function StudentPage() {
+  const location = useLocation();
+  const userId = location.pathname.split('/').pop();
   const [activeTab, setActiveTab] = useState('allmaintenanceRequests');
+  const [currentUser, setCurrentUser] = useState(null);
+  const [isOpen, setIsOpen] = useState(false); 
+
+  useEffect(() => {
+
+    const fetchCurrentUser = async () => {
+      try {
+
+        const response = await fetch(`http://localhost:8000/user/${userId}`);
+        if (response.ok) {
+          const data = await response.json();
+          setCurrentUser(data); 
+        } else {
+          throw new Error('Failed to fetch user data');
+        }
+      } catch (error) {
+        console.error('Error fetching user data:', error);
+      }
+    };
+
+    fetchCurrentUser(); 
+  }, [userId]);
 
   const toggleSidebar = () => {
     const sidebar = document.getElementById('sidebar');
@@ -15,6 +40,10 @@ function StudentPage() {
     } else {
       sidebar.classList.add('active');
     }
+  };
+
+  const toggleModal = () => {
+    setIsOpen(!isOpen);
   };
 
   return (
@@ -28,7 +57,9 @@ function StudentPage() {
             <Link to="/" style={{ color: 'black' }}>Home</Link>
           </li>
           <li>
-            <Link to="/calendar" style={{ color: 'black' }}>Calendar</Link>
+            <Link onClick={toggleModal} style={{ color: 'black' }}>
+              Profile
+            </Link>
           </li>
           <li>
             <Link to="/#contact" style={{ color: 'black' }}>Contact</Link>
@@ -105,7 +136,7 @@ function StudentPage() {
                   onClick={() => setActiveTab('Reviews')}
                   href="#"
                 >
-                  Feedbacks
+                  Reviews
                 </a>
               </li>
             </ul>
@@ -134,6 +165,9 @@ function StudentPage() {
           </div>
         </div>
       </div>
+      {currentUser && (
+        <ProfileEditModal isOpen={isOpen} toggleModal={toggleModal} userId={userId} currentUser={currentUser} />
+      )}
     </div>
   );
 }

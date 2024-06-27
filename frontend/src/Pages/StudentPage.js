@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Collapse } from 'bootstrap';
 import './styles.css';
 import ProfileEditModal from './ProfileEditModal';
 import MaintenanceRequests from './MaintenanceRequests';
@@ -16,10 +15,8 @@ function StudentPage() {
 
   useEffect(() => {
     // Simulating fetching current user data (replace with actual fetching logic)
-    // Example: Fetch user data from an API endpoint
     const fetchCurrentUser = async () => {
       try {
-        // Replace with actual API call to fetch user data
         const response = await fetch(`http://localhost:8000/user/${userId}`);
         if (response.ok) {
           const data = await response.json();
@@ -29,7 +26,6 @@ function StudentPage() {
         }
       } catch (error) {
         console.error('Error fetching user data:', error);
-        // Handle error (e.g., show error message)
       }
     };
 
@@ -38,11 +34,7 @@ function StudentPage() {
 
   const toggleSidebar = () => {
     const sidebar = document.getElementById('sidebar');
-    if (sidebar.classList.contains('active')) {
-      sidebar.classList.remove('active');
-    } else {
-      sidebar.classList.add('active');
-    }
+    sidebar.classList.toggle('active');
   };
 
   const toggleModal = () => {
