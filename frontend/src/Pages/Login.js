@@ -72,17 +72,24 @@ function Login() {
 
 
   return (
-    <div>
-      <ToastContainer />
-      <section id="hero" className="hero d-flex align-items-center">
-        <div className="container">
-          <div className="row">
-            <div className="col-lg-6 d-flex flex-column justify-content-center">
-              <div className="col-md-8 col-lg-10 col-xl-8 offset-xl-1">
-                <form onSubmit={handleSubmit} style={{marginTop:'-70px'}}>
-                  <div className="divider d-flex align-items-center my-5">
-                    <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
-                  </div>
+    <body> 
+      <section className="vh-100">
+        <div className="container-fluid h-custom">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <div className="col-md-9 col-lg-6 col-xl-5">
+              <img
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
+                className="img-fluid"
+                alt="Sample image"
+              />
+            </div>
+            <div className="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+              <form onSubmit={handleSubmit}>
+                <div className="d-flex flex-row align-items-center justify-content-center justify-content-lg-start"></div>
+
+                <div className="divider d-flex align-items-center my-4">
+                  <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
+                </div>
 
                 <div data-mdb-input-init className="form-outline mb-4">
                   <input
@@ -123,27 +130,21 @@ function Login() {
                   </a>
                 </div>
 
-                  <div className="d-flex justify-content-between align-items-center mt-4 pt-2">
-                    <button
-                      type="submit"
-                      className="btn btn-primary btn-lg"
-                      style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' , marginTop:'-30px'}}
-                    >
-                      Login
-                    </button>
-                    <p className="small fw-bold mt-2 pt-1 mb-0" >
-                      Don't have an account? <a href="/register" className="link-danger" >Register</a>
-                    </p>
-                  </div>
-                </form>
-              </div>
-            </div>
-            <div className="col-lg-6 hero-img" data-aos="zoom-out" data-aos-delay="200">
-              <img
-                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
-                className="img-fluid"
-                alt="Login Illustration"
-              />
+                <div className="text-center text-lg-start mt-4 pt-2">
+                  <button
+                    type="submit"
+                    data-mdb-button-init
+                    data-mdb-ripple-init
+                    className="btn btn-primary btn-lg"
+                    style={{ paddingLeft: '2.5rem', paddingRight: '2.5rem' }}
+                  >
+                    Login
+                  </button>
+                  <p className="small fw-bold mt-2 pt-1 mb-0">
+                    Don't have an account? <a href="/register" className="link-danger">Register</a>
+                  </p>
+                </div>
+              </form>
             </div>
           </div>
         </div>
