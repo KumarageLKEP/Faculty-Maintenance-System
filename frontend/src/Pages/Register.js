@@ -95,7 +95,7 @@ function Register() {
           <div className="col-lg-6 d-flex flex-column justify-content-center">
             <form onSubmit={onSubmit}>
               <div className="divider d-flex align-items-center my-4">
-                <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
+                <p className="text-center fw-bold mx-3 mb-0" style={{marginTop:'-70px'}}>Sign in with</p>
               </div>
               <div className="row">
                 <div className="col-md-6 mb-4">
@@ -131,7 +131,7 @@ function Register() {
                   placeholder="Enter registration number"
                   required
                 />
-                <small style={{ color: 'red' }}>Format: EG/AC/AD/MD followed by numbers</small>
+                <small style={{ color: 'black' }}>Format: EG/AC/AD/MD followed by numbers</small>
               </div>
               <div className="row">
                 <div className="col-md-6 mb-4">
@@ -202,7 +202,7 @@ function Register() {
                 </div>
                 <div className="col-md-6 mb-4 d-flex align-items-end">
                   <div className="text-center">
-                    <button type="submit" className="btn btn-secondary btn-lg">Sign Up</button>
+                    <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
                   </div>
                 </div>
               </div>

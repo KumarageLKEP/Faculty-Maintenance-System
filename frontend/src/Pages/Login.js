@@ -72,7 +72,7 @@ function Login() {
           <div className="row">
             <div className="col-lg-6 d-flex flex-column justify-content-center">
               <div className="col-md-8 col-lg-10 col-xl-8 offset-xl-1">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSubmit} style={{marginTop:'-70px'}}>
                   <div className="divider d-flex align-items-center my-5">
                     <p className="text-center fw-bold mx-3 mb-0">Sign in with</p>
                   </div>
